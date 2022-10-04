@@ -30,7 +30,7 @@ EditorBuildSettings:
     path: Assets/Scenes/PnguinGame/TimeLimit/Coin/Penguin_TimeLimit_Score.unity
     guid: 1bef6b86e983e4218a97af008ba3fd1d
   - enabled: 0
-    path: Assets/Scenes/PnguinGame/ButtonAllocation.unity
+    path: Assets/Scenes/PnguinGame/aaa.unity
     guid: 27578707a19b840948e5c8a65b34e85b
   - enabled: 0
     path: Assets/Scenes/PnguinGame/Scroll/Penguin_Scroll.unity
