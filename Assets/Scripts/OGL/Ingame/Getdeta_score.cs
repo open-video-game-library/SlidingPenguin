@@ -10,9 +10,7 @@ public class Getdeta_score : MonoBehaviour
     public GameObject timeTextObj;
     Text _timeText;
     public GameObject ScoreCanvas;
-    public GameObject GameOverCanvas;
     bool gamefin;
-    public GameObject percentageTextObj;
     public GameObject aniUI;
     Text _percentageText;
     public GameObject blue;
@@ -44,8 +42,12 @@ public class Getdeta_score : MonoBehaviour
     public Sprite BlueFishImg;
     public GameObject restartBtn;
     public GameObject homeBtn;
-    public GameObject resultTextObj;
-    Text resultText;
+
+    [SerializeField] private RawImage resultSprite;
+    [SerializeField] private Texture clearSprite;
+    [SerializeField] private Texture gameOverSprite;
+
+
     Animator anim;
     AudioSource audio;
 
@@ -58,7 +60,6 @@ public class Getdeta_score : MonoBehaviour
         //image.sprite = sprite;
         //Image a=blue.GetComponent<Image>();
         //a.sprite=BlueFishImg;
-        resultText=resultTextObj.GetComponent<Text>();
         anim=aniUI.GetComponent<Animator>();
         audio=this.GetComponent<AudioSource>();
         float resultsecond = GoalDetection.SecondPoint();
@@ -70,8 +71,6 @@ public class Getdeta_score : MonoBehaviour
         int processPercent=DistanceCalculator.kyoriPoint();
         _timeText=timeTextObj.GetComponent<Text>();
         _timeText.text="Time : "+resultminute.ToString("00") + ":" + (resultsecond).ToString ("00")+"."+resultms.ToString("00");
-        _percentageText=percentageTextObj.GetComponent<Text>();
-        _percentageText.text=processPercent.ToString()+" %";
     }
 
     // Update is called once per frame
@@ -79,9 +78,8 @@ public class Getdeta_score : MonoBehaviour
     {
         if(gamefin)
         {
-            resultText.text="Clear";
+            resultSprite.texture = clearSprite;
            ScoreCanvas.SetActive(true);
-           GameOverCanvas.SetActive(false);
            if(once)
            {
                bluefishNum=GoalDetection.getmizuiroPoint();
@@ -95,7 +93,7 @@ public class Getdeta_score : MonoBehaviour
            
         }else
         {
-            resultText.text="Game over";
+            resultSprite.texture = gameOverSprite;
            //ScoreCanvas.SetActive(false);
            //GameOverCanvas.SetActive(true);
            if(once)

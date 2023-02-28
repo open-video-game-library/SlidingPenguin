@@ -11,12 +11,9 @@ namespace penguin
 {
     public class StageDetection : MonoBehaviour
     {
-        
         [SerializeField] private  GameObject penguinShadow;
-        [SerializeField] private  GameObject penguinModel;
         PenguinMove penguinMove;       
         SpriteRenderer _penguinShadowRenderer;
-        private MeshRenderer penguinRenderer;
         SpriteRenderer _fishrenderer;
         public bool CourseOut;
         private float _alpha;
@@ -42,6 +39,8 @@ namespace penguin
         [SerializeField] private Rigidbody2D penguinRigidBody;
 
         [SerializeField] private GameObject timeUpText;
+
+        [SerializeField] private PenguinDisappear penguinDisappear;
         public enum GameOverType
         {
             TIMEUP,
@@ -66,12 +65,8 @@ namespace penguin
             _inputDataManager=GameObject.Find("GameManager").GetComponent<InputDataManager>();
 
 
-            penguinRenderer = penguinModel.GetComponent<MeshRenderer>();
-            for (int i = 0; i < 3; i++)
-            {
-                penguinRenderer.materials[i].SetFloat("_Surface", (float)BaseShaderGUI.SurfaceType.Opaque);
-                BaseShaderGUI.SetupMaterialBlendMode(penguinRenderer.materials[i]);
-            }
+            
+
         }
         float _time;
         // Update is called once per frame
@@ -85,15 +80,7 @@ namespace penguin
                 //Debug.Log(_alpha);
                 if(_alpha >= 0)
                 {
-                    
-                    penguinShadow.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-                    for (int i = 0; i < 3; i++)
-                    {
-                        penguinRenderer.materials[i].SetFloat("_Surface", (float)BaseShaderGUI.SurfaceType.Transparent);
-                        BaseShaderGUI.SetupMaterialBlendMode(penguinRenderer.materials[i]);
-                        penguinRenderer.materials[i].color = new Color(0,0,0,_alpha);
-                    }
-                    
+                    penguinDisappear.Disappear(_alpha);
                 }
                 
             }

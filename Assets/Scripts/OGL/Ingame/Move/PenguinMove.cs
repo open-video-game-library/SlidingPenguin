@@ -26,28 +26,20 @@ namespace penguin{
     private bool acceleration;
     Vector3 Force;
     [SerializeField] private Text fishNumberText;
-    AudioSource audioSource;
-    public GameObject slidingsound;
     private float _speed;
 
+    [SerializeField] private AudioSource acquiredSound;
+    [SerializeField] private AudioSource accelerationSound;
     [SerializeField] private Animator penguinMoveAnimator;
     // Start is called before the first frame update
     void Start()
     {
         SPEED = HomeSceneTransitionManager.getSensitivity();
-        rb = this.GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector3(0, 0, 0);
-        //defaultSpeed = SPEED;
-        //highSpeed = 2.5f * SPEED;
-        //onGround=true;
-        //CollisionDetection=Ground.GetComponent<CollisionDetection>();
-        transform = this.gameObject.GetComponent<Transform>();
-        //VeloTex=VeloObj.GetComponent<Text>();
-        this.enabled = false;
+        transform = gameObject.GetComponent<Transform>();
+        enabled = false;
         sensitext = sensiobj.GetComponent<Text>();
-        //animator = this.GetComponent<Animator>();
-       // fishcounter=0;
-       audioSource = slidingsound.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -63,16 +55,18 @@ namespace penguin{
         }
     }
 
-    public void Move(){
-		    
-
-        ///joystick
+    public void Move()
+    {
         float horizon = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
+        
+        // 移動入力があった際の処理
         if (vertical != 0 || horizon != 0)
         {
             // play animation
             penguinMoveAnimator.SetBool("IsMoving", true);
+            
+            // プレイヤーオブジェクトに力を加える
             if (!acceleration)
             {
                 Force = new Vector3(horizon, vertical, 0) * SPEED;
@@ -81,22 +75,28 @@ namespace penguin{
             {
                 Force = new Vector3(horizon, vertical, 0) * SPEED * 3;
             }
-
             rb.AddForce(Force);
+            
+            
+            // プレイヤーオブジェクトが向く方向を更新する
             float angle = Mathf.Atan(vertical / horizon) * Mathf.Rad2Deg;
-
+            Debug.Log(angle);
             if (horizon >= 0)
             {
+                transform.rotation = Quaternion.Euler(0, 0, angle - 90.0f);
+
                 if (Mathf.Abs(angle - 90.0f) > 0.1)
                 {
-                    transform.rotation = Quaternion.Euler(0, 0, angle - 90.0f);
+                    //transform.rotation = Quaternion.Euler(0, 0, angle - 90.0f);
                 }
             }
             else
             {
+                transform.rotation = Quaternion.Euler(0, 0, angle + 90.0f);
+
                 if (Mathf.Abs(angle - 90.0f) > 0.1)
                 {
-                    transform.rotation = Quaternion.Euler(0, 0, angle + 90.0f);
+                    //transform.rotation = Quaternion.Euler(0, 0, angle + 90.0f);
                 }
             }
 
@@ -107,7 +107,7 @@ namespace penguin{
 
     }
 
-    void Brake()
+    private void Brake()
     {
         if(Input.GetKeyDown("joystick button 2")||Input.GetKey(KeyCode.Space)||Input.GetKey(KeyCode.Return))
         {
@@ -115,17 +115,7 @@ namespace penguin{
             acceleration = true;
             StartCoroutine("PlayAccelerationAnimation");
             
-            if(audioSource.clip!=null)
-            {
-                audioSource.Play();
-                Debug.Log("A");
-            }
-            else
-            {
-                Debug.Log("B");
-            }
-            
-
+            accelerationSound.Play();
         }
       
         if(Input.GetKeyUp("joystick button 2")||Input.GetKey(KeyCode.Space))
@@ -142,14 +132,16 @@ namespace penguin{
         penguinMoveAnimator.SetBool("IsAcceleration", false);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag== "Fish")
         {
             fishcounter ++;
             fishNumberText.text = "×" + fishcounter;
+            acquiredSound.Play();
         }
     }
+    
 }
 }
 

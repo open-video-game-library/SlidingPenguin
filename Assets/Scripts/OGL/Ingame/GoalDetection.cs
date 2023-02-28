@@ -58,7 +58,7 @@ public class GoalDetection : MonoBehaviour
         CoinController=GameManager.GetComponent<CoinController>();
         _gameManager=GameManager.GetComponent<GameManager>();
         clearTextObj.SetActive(false);
-        _goalSound=this.gameObject.GetComponent<AudioSource>();
+        _goalSound = gameObject.GetComponent<AudioSource>();
         _fin=false;
         penguinMove=penguin.GetComponent<PenguinMove>(); 
         /*
@@ -72,11 +72,7 @@ public class GoalDetection : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     void OnTriggerEnter2D(Collider2D other)
     { 
@@ -87,8 +83,9 @@ public class GoalDetection : MonoBehaviour
             _fin=true;
             gamefinish();
             dataManager.postData(_name,_age,true,penguinMove.fishcounter,_gameManager.elapsedTime,180.0f,(float)_gameManager.totalNum/_gameManager.elapsedTime,(float)_gameManager.upNum/_gameManager.elapsedTime,(float)_gameManager.downNum/_gameManager.elapsedTime,(float)_gameManager.leftNum/_gameManager.elapsedTime,(float)_gameManager.rightNum/_gameManager.elapsedTime,(float)_gameManager.dashNum/_gameManager.elapsedTime,_inputDataManager.up_on,_inputDataManager.up_off); 
-            //penguinMove.enabled=false;
-        
+            penguinMove.enabled=false;
+            Rigidbody2D rb = penguin.GetComponent<Rigidbody2D>();
+            rb.velocity = Vector3.zero;
         }
         
     }
@@ -160,10 +157,22 @@ public class GoalDetection : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         _goalSound.clip=clearsound;
         _goalSound.Play();
-        yield return new WaitForSeconds(4.0f);
+        //scaleAnimation = true;
+        yield return new WaitForSeconds(1.0f);
+        //scaleAnimation = false;
         SceneManager.LoadScene("Result");
     }
-
     
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        if (!scaleAnimation) return;
+
+        itemCountUI.transform.localScale += new Vector3(Time.deltaTime, Time.deltaTime, Time.deltaTime) * 0.07f;
+    }
+
+    private bool scaleAnimation;
+    [SerializeField] private GameObject itemCountUI;
+
 }
 }
