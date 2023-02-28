@@ -86,7 +86,7 @@ public class GoalDetection : MonoBehaviour
             gameFin=true;
             _fin=true;
             gamefinish();
-            dataManager.postData(_name,_age,true,penguinMove.fishcounter,_gameManager.TIME,180.0f,(float)_gameManager.totalNum/_gameManager.TIME,(float)_gameManager.upNum/_gameManager.TIME,(float)_gameManager.downNum/_gameManager.TIME,(float)_gameManager.leftNum/_gameManager.TIME,(float)_gameManager.rightNum/_gameManager.TIME,(float)_gameManager.dashNum/_gameManager.TIME,_inputDataManager.up_on,_inputDataManager.up_off); 
+            dataManager.postData(_name,_age,true,penguinMove.fishcounter,_gameManager.elapsedTime,180.0f,(float)_gameManager.totalNum/_gameManager.elapsedTime,(float)_gameManager.upNum/_gameManager.elapsedTime,(float)_gameManager.downNum/_gameManager.elapsedTime,(float)_gameManager.leftNum/_gameManager.elapsedTime,(float)_gameManager.rightNum/_gameManager.elapsedTime,(float)_gameManager.dashNum/_gameManager.elapsedTime,_inputDataManager.up_on,_inputDataManager.up_off); 
             //penguinMove.enabled=false;
         
         }
@@ -95,15 +95,6 @@ public class GoalDetection : MonoBehaviour
 
     void gamefinish()
     {
-        /*
-        IngameCanvas.SetActive(false);
-        ScoreCanvas.SetActive(true);
-        mizuiroScoreText.text=CoinController.mizuirocount.ToString();
-        greenScoreText.text=CoinController.greencount.ToString();
-        redScoreText.text=CoinController.redcount.ToString();
-        pinkScoreText.text=CoinController.pinkcount.ToString();
-        yellowScoreText.text=CoinController.yellowcount.ToString();
- */     
         _gameManager.gameStart=false;
         minutes=_gameManager.minute;
         seconds=_gameManager.seconds;
@@ -170,7 +161,7 @@ public class GoalDetection : MonoBehaviour
         _goalSound.clip=clearsound;
         _goalSound.Play();
         yield return new WaitForSeconds(4.0f);
-        SceneManager.LoadScene("Penguin_Score");
+        SceneManager.LoadScene("Result");
     }
 
     

@@ -63,21 +63,21 @@ public class CoinController : MonoBehaviour
         mizuiroText.color=new Color32(41,174,255,255);
         if(mizuirocount==1)
         {
-           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/blue_fish");
-           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/fish_collect");
-           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/fish_collect");
+           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Blue");
+           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_PointLine");
+           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_PointLine");
         }
         if(mizuirocount==2)
         {
-           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/blue_fish");
-           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/blue_fish");
-           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/fish_collect");
+           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Blue");
+           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Blue");
+           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_PointLine");
         }
         if(mizuirocount==3)
         {
-           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/blue_fish");
-           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/blue_fish");
-           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/blue_fish");       
+           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Blue");
+           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Blue");
+           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Blue");       
            StartCoroutine("TextInactive");
         }
 
@@ -90,21 +90,21 @@ public class CoinController : MonoBehaviour
         
         if(greencount==1)
         {
-           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/green_fish");
-           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/fish_collect");
-           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/fish_collect");
+           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Green");
+           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_PointLine");
+           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_PointLine");
         }
         if(greencount==2)
         {
-           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/green_fish");
-           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/green_fish");
-           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/fish_collect");
+           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Green");
+           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Green");
+           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_PointLine");
         }
         if(greencount==3)
         {
-           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/green_fish");
-           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/green_fish");
-           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/green_fish");       
+           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Green");
+           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Green");
+           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Green");         
            StartCoroutine("TextInactive");
         }
         
@@ -116,21 +116,21 @@ public class CoinController : MonoBehaviour
         mizuiroText.color=new Color32(255,5,77,255);
         if(redcount==1)
         {
-           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/red_fish");
-           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/fish_collect");
-           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/fish_collect");
+           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Red");
+           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_PointLine");
+           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_PointLine");
         }
         if(redcount==2)
         {
-           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/red_fish");
-           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/red_fish");
-           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/fish_collect");
+           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Red");
+           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Red");
+           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_PointLine");
         }
         if(redcount==3)
         {
-           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/red_fish");
-           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/red_fish");
-           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/red_fish");       
+           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Red");
+           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Red");
+           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Red");        
            StartCoroutine("TextInactive");
         }
     }
@@ -141,21 +141,21 @@ public class CoinController : MonoBehaviour
         mizuiroText.color=new Color32(255,236,38,255);
         if(yellowcount==1)
         {
-           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/yellow_fish");
-           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/fish_collect");
-           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/fish_collect");
+           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Yellow");
+           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_PointLine");
+           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_PointLine");
         }
         if(yellowcount==2)
         {
-           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/yellow_fish");
-           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/yellow_fish");
-           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/fish_collect");
+           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Yellow");
+           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Yellow");
+           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_PointLine");
         }
         if(yellowcount==3)
         {
-           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/yellow_fish");
-           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/yellow_fish");
-           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/yellow_fish");       
+           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Yellow");
+           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Yellow");
+           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Yellow");         
            StartCoroutine("TextInactive");
         }
     }
@@ -166,21 +166,21 @@ public class CoinController : MonoBehaviour
         mizuiroText.color=new Color32(255,119,168,255);
         if(pinkcount==1)
         {
-           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/pinkfish02");
-           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/fish_collect");
-           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/fish_collect");
+           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Pink");
+           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_PointLine");
+           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_PointLine");
         }
         if(pinkcount==2)
         {
-           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/pinkfish02");
-           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/pinkfish02");
-           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/fish_collect");
+           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Pink");
+           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Pink");
+           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_PointLine");
         }
         if(pinkcount==3)
         {
-           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/pinkfish02");
-           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/pinkfish02");
-           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/pinkfish02");       
+           blue1.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Pink");
+           blue2.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Pink");
+           blue3.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprite/Fish_Pink");             
            StartCoroutine("TextInactive");
         }
     }

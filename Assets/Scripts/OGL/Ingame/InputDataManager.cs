@@ -24,12 +24,12 @@ public class InputDataManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                up_on.Add(_gameManager.TIME);
+                up_on.Add(_gameManager.elapsedTime);
             }
 
             if (Input.GetKeyUp(KeyCode.UpArrow))
             {
-                up_off.Add(_gameManager.TIME);
+                up_off.Add(_gameManager.elapsedTime);
             }
         }
         

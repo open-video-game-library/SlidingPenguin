@@ -67,7 +67,7 @@ public class Getdeta_score : MonoBehaviour
 
         float resultms = GoalDetection.MsPoint();
         gamefin=GoalDetection.gameclear();
-        int processPercent=Kilyori.kyoriPoint();
+        int processPercent=DistanceCalculator.kyoriPoint();
         _timeText=timeTextObj.GetComponent<Text>();
         _timeText.text="Time : "+resultminute.ToString("00") + ":" + (resultsecond).ToString ("00")+"."+resultms.ToString("00");
         _percentageText=percentageTextObj.GetComponent<Text>();

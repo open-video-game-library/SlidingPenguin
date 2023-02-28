@@ -11,42 +11,42 @@ namespace penguin{
     CollisionDetection CollisionDetection;
     Rigidbody2D rb; 
     [SerializeField]public float SPEED;
-    float defaultSpeed;
+    //float defaultSpeed;
     float fighSpeed;
-    float highSpeed;
+    //float highSpeed;
     Transform transform;
     //public GameObject VeloObj;
     Text VeloTex;
     public GameObject sensiobj;
-    [SerializeField]float brake=0.99f;
+    //[SerializeField]float brake=0.99f;
     Text sensitext;
     //public AudioSource brakesoud;
-    public AudioClip audioClip1;
-    Animator animator;
-    bool jump;
+    //public AudioClip audioClip1;
+    //Animator animator;
+    private bool acceleration;
     Vector3 Force;
-    public GameObject counterTextObj;
-    Text CounterText;
+    [SerializeField] private Text fishNumberText;
     AudioSource audioSource;
     public GameObject slidingsound;
     private float _speed;
+
+    [SerializeField] private Animator penguinMoveAnimator;
     // Start is called before the first frame update
     void Start()
     {
         SPEED = HomeSceneTransitionManager.getSensitivity();
         rb = this.GetComponent<Rigidbody2D>();
         rb.velocity = new Vector3(0, 0, 0);
-        defaultSpeed = SPEED;
-        highSpeed = 2.5f * SPEED;
+        //defaultSpeed = SPEED;
+        //highSpeed = 2.5f * SPEED;
         //onGround=true;
         //CollisionDetection=Ground.GetComponent<CollisionDetection>();
         transform = this.gameObject.GetComponent<Transform>();
         //VeloTex=VeloObj.GetComponent<Text>();
         this.enabled = false;
         sensitext = sensiobj.GetComponent<Text>();
-        animator = this.GetComponent<Animator>();
+        //animator = this.GetComponent<Animator>();
        // fishcounter=0;
-       CounterText = counterTextObj.GetComponent<Text>();
        audioSource = slidingsound.GetComponent<AudioSource>();
     }
 
@@ -69,44 +69,51 @@ namespace penguin{
         ///joystick
         float horizon = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        if(vertical != null || horizon != null)
+        if (vertical != 0 || horizon != 0)
         {
-            if(!jump)
+            // play animation
+            penguinMoveAnimator.SetBool("IsMoving", true);
+            if (!acceleration)
             {
                 Force = new Vector3(horizon, vertical, 0) * SPEED;
             }
-            else{
+            else
+            {
                 Force = new Vector3(horizon, vertical, 0) * SPEED * 3;
             }
-            
+
             rb.AddForce(Force);
             float angle = Mathf.Atan(vertical / horizon) * Mathf.Rad2Deg;
-            
-            if(horizon >= 0)
+
+            if (horizon >= 0)
             {
-                transform.rotation = Quaternion.Euler(0, 0, angle - 90.0f); 
+                if (Mathf.Abs(angle - 90.0f) > 0.1)
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, angle - 90.0f);
+                }
             }
             else
             {
-                transform.rotation = Quaternion.Euler(0, 0, angle + 90.0f); 
+                if (Mathf.Abs(angle - 90.0f) > 0.1)
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, angle + 90.0f);
+                }
             }
-             
-        
-        
-        }		
 
-        
-	}
+            return;
+        }
+
+        penguinMoveAnimator.SetBool("IsMoving", false);
+
+    }
 
     void Brake()
     {
         if(Input.GetKeyDown("joystick button 2")||Input.GetKey(KeyCode.Space)||Input.GetKey(KeyCode.Return))
         {
-            Debug.Log("C");
-            jump = true;
-            StartCoroutine("Samples");
-            
-            animator.SetBool("jump",true);
+
+            acceleration = true;
+            StartCoroutine("PlayAccelerationAnimation");
             
             if(audioSource.clip!=null)
             {
@@ -120,33 +127,27 @@ namespace penguin{
             
 
         }
-        if(Input.GetKey("joystick button 2"))
-        {
-            //rb.velocity *= brake;
-            //brakesoud.Play();
-            
-        }
-        
+      
         if(Input.GetKeyUp("joystick button 2")||Input.GetKey(KeyCode.Space))
         {
             this.GetComponent<AudioSource>().Stop();
-            
         }
     }
 
-    IEnumerator Samples() 
+    private IEnumerator PlayAccelerationAnimation() 
     {
+        penguinMoveAnimator.SetBool("IsAcceleration", true);
         yield return new WaitForSeconds (0.7f);
-        jump = false;
-        animator.SetBool("jump",false);
+        acceleration = false;
+        penguinMoveAnimator.SetBool("IsAcceleration", false);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag=="yellow"||other.gameObject.tag=="green"||other.gameObject.tag=="red"||other.gameObject.tag=="mizuiro"||other.gameObject.tag=="pink")
+        if(other.gameObject.tag== "Fish")
         {
-            fishcounter++;
-            CounterText.text="×"+fishcounter.ToString();
+            fishcounter ++;
+            fishNumberText.text = "×" + fishcounter;
         }
     }
 }

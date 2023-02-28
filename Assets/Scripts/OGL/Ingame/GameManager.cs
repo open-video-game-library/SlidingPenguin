@@ -2,39 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 
 namespace penguin
 {
     public class GameManager : MonoBehaviour
     {
-        Button HomeBtn;
-        public GameObject ingamecanvas;
-        float countdown=3.9f;
+        //Button HomeBtn;
+        float countdown = 3.9f;
         int count=-1;
         public bool gameStart=false;
         public GameObject countdownTextObj;
         Text countdownText;
-        icegroundController icegroundController;
-        public GameObject icegroundControllerObj;
-        public GameObject penguin;
-        PenguinMove penguinmove_is;          //ここ変える
-        public float TIME=0;
-        public static float totalTime=0;
+        public GameObject penguin; 
+        public float elapsedTime;
         AudioSource _countDownSound;
-        public GameObject goalObj;
-        GoalDetection _goalDetection;
         bool _stageintroductionfin=false;
         bool once=false;
         public GameObject cam;
         public int minute=0;
         public int seconds;
         public float ms;
-        float oldTime=0;
-        public GameObject parentPenguin;
-        [SerializeField]public int maxTime=180;
-        public int remainingtime;
+        //float oldTime=0;
         bool stageintro=false;
         public GameObject bgmObj;
         AudioSource bgm;
@@ -52,27 +43,39 @@ namespace penguin
         public int totalNum=0;
 
         private SpriteRenderer _penguinRenderer;
-        void Start()
+
+        [SerializeField] private Image countDownImage;
+
+        [SerializeField] private Sprite countDownOne;
+        [SerializeField] private Sprite countDownTwo;
+        [SerializeField] private Sprite countDownThree;
+        [SerializeField] private Sprite countDownGo;
+
+
+        [SerializeField] private float limitedTime;
+        [SerializeField] private Text timeText;
+
+        [SerializeField] private PenguinMove penguinMove;
+
+        [SerializeField] private GameObject timeTextObject;
+        [SerializeField] private GameObject fishNumberTextObject;
+        
+        private void Start()
         {
-            ///startBtn.onClick.AddListener(startgameBtnClicked);
-            //HomeBtn=HomeBtnObj.GetComponent<Button>();
-            //HomeBtn.onClick.AddListener(HomeBtnClicked);
             stageIntroBGM=stageintroBGMObj.GetComponent<AudioSource>();
             stagedetection=stageObj.GetComponent<StageDetection>();
-            maxTime=HomeSceneTransitionManager.getTimelimit();
-           bgm=bgmObj.GetComponent<AudioSource>();
+            bgm=bgmObj.GetComponent<AudioSource>();
             countdownText=countdownTextObj.GetComponent<Text>();
-            icegroundController=icegroundControllerObj.GetComponent<icegroundController>();
-            penguinmove_is=penguin.GetComponent<PenguinMove>();
             _countDownSound=this.gameObject.GetComponent<AudioSource>();
-            _goalDetection=goalObj.GetComponent<GoalDetection>();
-           
 
             _penguinRenderer = penguin.GetComponent<SpriteRenderer>();
+            countDownImage.color = new Color(0,0,0,0);
+            timeTextObject.SetActive(false);
+            fishNumberTextObject.SetActive(false);
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
             if(!_stageintroductionfin)
             {
@@ -80,127 +83,143 @@ namespace penguin
                 if(stageintro)
                 {
                     cam.GetComponent<Transform>().position -= new Vector3(0,0.4f,0);
-                    if(cam.GetComponent<Transform>().position.y<=0||Input.GetKey(KeyCode.Space))    //Input.GetKeyDown("joystick button 1"
+                    if(cam.GetComponent<Transform>().position.y <= 0 || Input.GetKey(KeyCode.Space))    
                     {
-                    //skipTextObj.SetActive(false);
-                    stageIntroBGM.Pause();
-                    _stageintroductionfin=true;
-                    StartCoroutine("CountDownSound");  
-                    remainingtime=(int)(maxTime-TIME);
+                        stageIntroBGM.Pause();
+                        _stageintroductionfin=true;
+                        timeTextObject.SetActive(true);
+                        fishNumberTextObject.SetActive(true);
+                        timeText.text = AdjustRemainingTime(Mathf.CeilToInt(limitedTime - elapsedTime));
+                        StartCoroutine("CountDownSound");
                     }
                 }
-                
-                
-                
             }
             
            if(once)
            {
-               countdown-=Time.deltaTime;
-               count=(int)countdown;          
+               countdown -= Time.deltaTime;
+               count = (int)countdown;         
+               SwitchUI(); 
            }
-            
-            if(count>0)
-            {
-                 countdownText.text=count.ToString();
-            }
-            if(count==0&&!gameStart)
-            {
-                countdownText.text="START";
-                countdownText.fontSize=60;
-                 penguinmove_is.enabled=true;
-                 gameStart=true;   
-                countdownText.text="";
-                bgm.Play();
-            }
 
-            if(gameStart)
-            {
-               
-                TIME += Time.deltaTime;
+           
+           if (!gameStart) return;
 
-                if(Input.GetKeyDown(KeyCode.UpArrow)||Input.GetKeyDown(KeyCode.W))
-                {
-                    upNum++;
-                    totalNum++;
-                }
-                else if(Input.GetKeyDown(KeyCode.DownArrow)||Input.GetKeyDown(KeyCode.S))
-                {
-                    downNum++;
-                    totalNum++;
-                }
-                else if(Input.GetKeyDown(KeyCode.LeftArrow)||Input.GetKeyDown(KeyCode.A))
-                {
-                    leftNum++;
-                    totalNum++;
-                }
-                else if(Input.GetKeyDown(KeyCode.RightArrow)||Input.GetKeyDown(KeyCode.D))
-                {
-                    rightNum++;
-                    totalNum++;
-                }
-                else if(Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.Return))
-                {
-                    dashNum++;
-                    totalNum++;
-                }
-                
-                
+           
+           CountInputNumber();
+           JudgeResult();
+        }
+
+        private void JudgeResult()
+        {
+            // 制限時間をオーバーしてしまったら
+            elapsedTime += Time.deltaTime;
+            timeText.text = AdjustRemainingTime(Mathf.CeilToInt(limitedTime - elapsedTime));
+            if (limitedTime - elapsedTime <= 30)
+            {
+                timeText.color = Color.red;
+                // 急げSE
+            }
+            if (elapsedTime >= limitedTime)
+            {
+                StartCoroutine(stagedetection.GameOver(StageDetection.GameOverType.TIMEUP));
             }
             
-            
-            if (!_penguinRenderer.isVisible && gameStart)
+            // 画面外に行ってしまったら
+            if (!_penguinRenderer.isVisible)
             {
+                Debug.Log("画面外なう");
                 gameStart=false;
                 bgm.Pause();
-                stagedetection.gameover();
-                stagedetection.StartCoroutine("gameOver");
-                
+                //stagedetection.gameover();
+                StartCoroutine(stagedetection.GameOver(StageDetection.GameOverType.COURCEOUT));
                 getmizuiroPoint();
                 greenPoint();
                 redPoint();
                 pinkPoint();
                 yellowPoint();
             }
+        }
+
+        private string AdjustRemainingTime(int remainingTime)
+        {
+            int minutes = remainingTime / 60;
+            int seconds = remainingTime - minutes * 60;
             
+            return minutes.ToString().PadLeft(2, '0') + ":" + seconds.ToString().PadLeft(2, '0');
+        }
+
+        private void CountInputNumber()
+        {
+            if(Input.GetKeyDown(KeyCode.UpArrow)||Input.GetKeyDown(KeyCode.W))
+            {
+                upNum++;
+                totalNum++;
+            }
+            else if(Input.GetKeyDown(KeyCode.DownArrow)||Input.GetKeyDown(KeyCode.S))
+            {
+                downNum++;
+                totalNum++;
+            }
+            else if(Input.GetKeyDown(KeyCode.LeftArrow)||Input.GetKeyDown(KeyCode.A))
+            {
+                leftNum++;
+                totalNum++;
+            }
+            else if(Input.GetKeyDown(KeyCode.RightArrow)||Input.GetKeyDown(KeyCode.D))
+            {
+                rightNum++;
+                totalNum++;
+            }
+            else if(Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.Return))
+            {
+                dashNum++;
+                totalNum++;
+            }
+        }
+
+        private void SwitchUI()
+        {
+            if(count>0)
+            {
+                if(count >= 3)
+                {
+                    countDownImage.color = new Color(1,1,1,1);
+                    countDownImage.sprite = countDownThree;
+                    //StartCoroutine(RemoveCountDownNumber());
+                    return;
+                }
+                else if(count >= 2)
+                {
+                    countDownImage.color = new Color(1,1,1,1);
+                    countDownImage.sprite = countDownTwo;
+                    //StartCoroutine(RemoveCountDownNumber());
+                    return;
+                }
+                else if(count >= 1)
+                {
+                    countDownImage.color = new Color(1,1,1,1);
+                    countDownImage.sprite = countDownOne;
+                    //StartCoroutine(RemoveCountDownNumber());
+                    return;
+                }
                 
-         
-            
+            }
+
+            if(count == 0 && !gameStart)
+            {
+                countDownImage.color =  new Color(1,1,1,1);
+                StartCoroutine(RemoveCountDownNumber());
+                countDownImage.sprite = countDownGo;
+                countdownText.fontSize=60;
+                gameStart=true;   
+                countdownText.text="";
+                penguinMove.enabled = true;
+                bgm.Play();
+            }
         }
 
-        void startgameBtnClicked()
-        {
-            //startcanvas.enabled=false;
-            //startcanvas.SetActive(false);
-            ingamecanvas.SetActive(true);
-            HomeBtn.enabled=false;
-            countdownText.text="3";
-        }
-
-        void gamestarted()
-        {
-            gameStart=true;
-            
-            countdownText.text="";
-        }
-
-
-        public void fingame()
-        {
-            countdownText.enabled=true;
-            
-            countdownText.text="FIN";
-            countdownText.fontSize=60;
-            //icegroundController.Move();
-            icegroundController.enabled=false;
-        }
-
-        void HomeBtnClicked()
-        {
-           ingamecanvas.SetActive(false);
-           SceneManager.LoadScene ("PenguinScroll");
-
-        }
+       
 
         private IEnumerator CountDownSound() 
 　　    {
@@ -212,6 +231,12 @@ namespace penguin
             _countDownSound.Play();
          
         
+        }
+
+        private IEnumerator RemoveCountDownNumber()
+        {
+            yield return new WaitForSeconds(1.0f);
+            countDownImage.color = new Color(0,0,0,0);
         }
 
         private  IEnumerator childappeal()
