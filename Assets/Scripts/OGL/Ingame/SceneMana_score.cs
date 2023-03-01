@@ -13,8 +13,6 @@ public class SceneMana_score : MonoBehaviour
     {
         homeButton[0].onClick.AddListener(homebtnclick);
         retryButton[0].onClick.AddListener(retrybtnclick);
-        homeButton[1].onClick.AddListener(homebtnclick);
-        retryButton[1].onClick.AddListener(retrybtnclick);
     }
 
     // Update is called once per frame
@@ -25,25 +23,23 @@ public class SceneMana_score : MonoBehaviour
 
     void homebtnclick()
     {
-        Debug.Log("333");
         StartCoroutine("load_home");
     }
 
     void retrybtnclick()
     {
-        Debug.Log("444");
         StartCoroutine("load_main");
     }
 
     private IEnumerator load_home()
     {
         yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene ("Penguin_home");
+        SceneManager.LoadScene ("Start");
     }
 
     private IEnumerator load_main()
     {
         yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene ("Penguin_timeattack");
+        SceneManager.LoadScene ("Inagame");
     }
 }

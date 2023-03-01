@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c643466e9c32442bcb3b9311ce2e4e84, type: 2}
+  - {fileID: 2100000, guid: 49a4065c0151b47f9a27cfcfca8779e6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 7819508713416750343}
   m_Layer: 0
   m_Name: Fish_Shadow
-  m_TagString: mizuiro
+  m_TagString: Fish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -308,4 +308,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManagerObj: {fileID: 0}
   AudioManager: {fileID: 0}
-  addTimeTextObj: {fileID: 0}

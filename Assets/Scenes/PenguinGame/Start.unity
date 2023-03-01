@@ -159,6 +159,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 964865145, guid: aa9abdcec257a43c4bce69bf6a2947b7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 73efac8a9b29f4b2081661a3a6d66305, type: 3}
     - target: {fileID: 1408871557, guid: aa9abdcec257a43c4bce69bf6a2947b7, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -187,6 +191,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1833055407, guid: aa9abdcec257a43c4bce69bf6a2947b7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 73efac8a9b29f4b2081661a3a6d66305, type: 3}
     - target: {fileID: 339151966554917018, guid: aa9abdcec257a43c4bce69bf6a2947b7, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -861,7 +869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 529766003522933658, guid: 1c1d88d353ee04d128b2d3d1ae3ce476, type: 3}
       propertyPath: m_Name
-      value: startCanvas
+      value: StartCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 529766004799761787, guid: 1c1d88d353ee04d128b2d3d1ae3ce476, type: 3}
       propertyPath: m_Sprite

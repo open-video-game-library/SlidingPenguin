@@ -117,11 +117,7 @@ namespace penguin{
             
             accelerationSound.Play();
         }
-      
-        if(Input.GetKeyUp("joystick button 2")||Input.GetKey(KeyCode.Space))
-        {
-            this.GetComponent<AudioSource>().Stop();
-        }
+        
     }
 
     private IEnumerator PlayAccelerationAnimation() 

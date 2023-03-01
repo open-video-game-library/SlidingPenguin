@@ -34,18 +34,10 @@ public class GoalDetection : MonoBehaviour
     private InputDataManager _inputDataManager;
     public string _name;
     public string _age;
-    /*
-    public GameObject mizuiroScoreTextObj;
-    public GameObject greenScoreTextObj;
-    public GameObject redScoreTextObj;
-    public GameObject pinkScoreTextObj;
-    public GameObject yellowScoreTextObj;
-    Text mizuiroScoreText;
-    Text greenScoreText;
-    Text redScoreText;
-    Text pinkScoreText;
-    Text yellowScoreText;
-    */
+
+    private static int itemNumber;
+
+    private static int maxFishNumber;
     // Start is called before the first frame update
     void Start()
     {
@@ -69,7 +61,9 @@ public class GoalDetection : MonoBehaviour
         yellowScoreText=yellowScoreTextObj.GetComponent<Text>();
         */
         _inputDataManager=GameObject.Find("GameManager").GetComponent<InputDataManager>();
-        
+         GameObject[] fish = GameObject.FindGameObjectsWithTag("Fish");
+         maxFishNumber = fish.Length;
+         Debug.Log(maxFishNumber);
     }
 
     
@@ -92,6 +86,7 @@ public class GoalDetection : MonoBehaviour
 
     void gamefinish()
     {
+        itemNumber = penguinMove.fishcounter;
         _gameManager.gameStart=false;
         minutes=_gameManager.minute;
         seconds=_gameManager.seconds;
@@ -143,12 +138,16 @@ public class GoalDetection : MonoBehaviour
         //return _gameManager.totalTime;
         return gameFin;
     }
-    /*
-    public static int getfishPoint() {
-        //return _gameManager.totalTime;
-        a=penguinMove.fishcounter;
-        return a;
-    }*/
+    
+    public static int GetItemNumber() 
+    {
+        return itemNumber;
+    }
+
+    public static int GetMaxItemNumber()
+    {
+        return maxFishNumber;
+    }
     
 
 
@@ -158,7 +157,7 @@ public class GoalDetection : MonoBehaviour
         _goalSound.clip=clearsound;
         _goalSound.Play();
         //scaleAnimation = true;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.0f);
         //scaleAnimation = false;
         SceneManager.LoadScene("Result");
     }

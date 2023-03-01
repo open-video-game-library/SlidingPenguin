@@ -51,8 +51,8 @@ namespace penguin
         [SerializeField] private Sprite countDownThree;
         [SerializeField] private Sprite countDownGo;
 
-
         [SerializeField] private float limitedTime;
+        private float setlimitedTime;
         [SerializeField] private Text timeText;
 
         [SerializeField] private PenguinMove penguinMove;
@@ -72,6 +72,11 @@ namespace penguin
             countDownImage.color = new Color(0,0,0,0);
             timeTextObject.SetActive(false);
             fishNumberTextObject.SetActive(false);
+            limitedTime = HomeSceneTransitionManager.getTimelimit();
+            if (limitedTime == 0)
+            {
+                limitedTime = setlimitedTime;
+            }
         }
 
         // Update is called once per frame
