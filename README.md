@@ -6,7 +6,7 @@ SlidingPenguinは、海に落ちないように氷の上のペンギンを操作
 
 実験でも利用しやすいよう、理解しやすく、少ない入力で体験可能なゲームとなっています。
 
-<img width="788" alt="SlidingPenguin (1)" src="https://user-images.githubusercontent.com/71160720/195008871-edcef053-0f3e-4fa4-ba1e-284b9ba51546.png">
+![SlidingPenguin](https://user-images.githubusercontent.com/71160720/222035563-a278f647-33f1-4d93-ba49-c4aefe5f5602.jpg)
 
 
 ## Contents
