@@ -27,7 +27,7 @@ namespace penguin
         public float ms;
         //float oldTime=0;
         bool stageintro=false;
-        public GameObject bgmObj;
+        [SerializeField] GameObject ingameBgm;
         AudioSource bgm;
         //public GameObject childpenguin;
         AudioSource penguin_voice;
@@ -35,6 +35,9 @@ namespace penguin
         StageDetection stagedetection;
         public GameObject stageintroBGMObj;
         AudioSource stageIntroBGM;
+        [SerializeField] private AudioSource countDownSound;
+        [SerializeField] private AudioSource rushAlert;
+
         public int upNum=0;
         public int downNum=0;
         public int leftNum=0;
@@ -59,14 +62,16 @@ namespace penguin
 
         [SerializeField] private GameObject timeTextObject;
         [SerializeField] private GameObject fishNumberTextObject;
+
+        private bool isAlert;
         
         private void Start()
         {
             stageIntroBGM=stageintroBGMObj.GetComponent<AudioSource>();
             stagedetection=stageObj.GetComponent<StageDetection>();
-            bgm=bgmObj.GetComponent<AudioSource>();
+            bgm = ingameBgm.GetComponent<AudioSource>();
             countdownText=countdownTextObj.GetComponent<Text>();
-            _countDownSound=this.gameObject.GetComponent<AudioSource>();
+            _countDownSound = countDownSound.gameObject.GetComponent<AudioSource>();
 
             _penguinRenderer = penguin.GetComponent<SpriteRenderer>();
             countDownImage.color = new Color(0,0,0,0);
@@ -120,16 +125,27 @@ namespace penguin
             // 制限時間をオーバーしてしまったら
             elapsedTime += Time.deltaTime;
             timeText.text = AdjustRemainingTime(Mathf.CeilToInt(limitedTime - elapsedTime));
-            if (limitedTime - elapsedTime <= 30)
+            
+            if (!isAlert)
             {
-                timeText.color = Color.red;
-                // 急げSE
+                if (limitedTime - elapsedTime <= 30)
+                {
+                    isAlert = true;
+                    timeText.color = Color.red;
+                    StartCoroutine(AlertLeftTime());
+                }
+                else
+                {
+                    return;
+                }
             }
+           
             if (elapsedTime >= limitedTime)
             {
                 StartCoroutine(stagedetection.GameOver(StageDetection.GameOverType.TIMEUP));
             }
             
+            /*
             // 画面外に行ってしまったら
             if (!_penguinRenderer.isVisible)
             {
@@ -144,6 +160,16 @@ namespace penguin
                 pinkPoint();
                 yellowPoint();
             }
+            */
+        }
+
+        private IEnumerator AlertLeftTime()
+        {
+            bgm.Pause();
+            rushAlert.Play();
+            yield return new WaitForSeconds(1.5f);
+            bgm.pitch = 1.2f;
+            bgm.Play();
         }
 
         private string AdjustRemainingTime(int remainingTime)

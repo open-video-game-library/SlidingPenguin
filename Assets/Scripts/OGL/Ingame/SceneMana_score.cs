@@ -6,20 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class SceneMana_score : MonoBehaviour
 {
-    public Button[] homeButton;
-    public Button[] retryButton;
+    public Button homeButton;
+    public Button retryButton;
     // Start is called before the first frame update
     void Start()
     {
-        homeButton[0].onClick.AddListener(homebtnclick);
-        retryButton[0].onClick.AddListener(retrybtnclick);
+        homeButton.onClick.AddListener(homebtnclick);
+        retryButton.onClick.AddListener(retrybtnclick);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     void homebtnclick()
     {
@@ -40,6 +35,6 @@ public class SceneMana_score : MonoBehaviour
     private IEnumerator load_main()
     {
         yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene ("Inagame");
+        SceneManager.LoadScene ("InGame");
     }
 }

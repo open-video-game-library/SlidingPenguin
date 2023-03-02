@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement; 
@@ -22,20 +23,21 @@ namespace penguin
         [SerializeField] private  GameObject homecanvas;
         [SerializeField] private  GameObject adjustcanvas;
         [SerializeField] private  GameObject infoInputcanvas;
-        [SerializeField] private  AudioSource settingsound;
+        [SerializeField] private  AudioSource soundEffect;
+        [SerializeField] private  AudioSource backGroundMusic;
+        [SerializeField] private AudioClip startClip;
         //Player Info
         public GameObject nameTextObj;
         public GameObject ageTextObj;
         private Text _nameText;
         private Text _ageText;
-        
+
         // Start is called before the first frame update
         void Start()
         {
             _homeButton.onClick.AddListener(HomeButtonClicked);
             _startGameButton.onClick.AddListener(StartButtonClicked);
             _settingButton.onClick.AddListener(SettingButtonClicked);
-            settingsound = audiomanager.GetComponent<AudioSource>();
             sensitivitySlider = sensitivitysliderObject.GetComponent<Slider>();
             timelimitSlider = timelimitsliderObject.GetComponent<Slider>();
             //Player Info
@@ -51,6 +53,8 @@ namespace penguin
 
         void StartButtonClicked()
         {
+            soundEffect.clip = startClip;
+            soundEffect.Play();
             StartCoroutine("load");
             name = _nameText.text;
             age = _ageText.text;
@@ -65,9 +69,7 @@ namespace penguin
         public void SettingButtonClicked()
         {
             adjustcanvas.SetActive(true);
-            settingsound.Play();
-            //homecanvas.SetActive(false);
-            //infoInputcanvas.SetActive(false);
+            soundEffect.Play();
         }
 
         void HomeButtonClicked()
@@ -78,36 +80,36 @@ namespace penguin
             BGMstart();
         }
 
-        public static string getPlayerName() {
-            //return _gameManager.totalTime;
+        public static string getPlayerName() 
+        {
             return name;
         }
 
-        public static string getPlayerAge() {
-            //return _gameManager.totalTime;
+        public static string getPlayerAge() 
+        {
             return age;
         }
 
-        public static float getSensitivity() {
-            //return _gameManager.totalTime;
+        public static float getSensitivity() 
+        {
             return sensitivity;
         }
 
-        public static int getTimelimit() {
-            //return _gameManager.totalTime;
+        public static int getTimelimit()
+        {
             return timelimit;
         }
 
         private IEnumerator BGMstart()
         {
             yield return new WaitForSeconds(1.0f);
-            GetComponent<AudioSource>().Play();
+            backGroundMusic.Play();
         }
 
         private IEnumerator load()
         {
+            backGroundMusic.Pause();
             yield return new WaitForSeconds(0.8f);
-            GetComponent<AudioSource>().Pause();
             SceneManager.LoadScene ("InGame");
         }
     }

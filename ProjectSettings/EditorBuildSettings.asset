@@ -5,15 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Scenes/PnguinGame/TimeLimit/fish/Penguin(fish)_TimeLimit_Score.unity
-    guid: 611a530dbc72d456d9042f5085273a80
-  - enabled: 0
-    path: Assets/Scenes/PenguinScroll.unity
-    guid: 3da4524cb35904305b265a35f81ccd9b
   - enabled: 1
     path: Assets/Scenes/PenguinGame/Start.unity
     guid: 81e7115624fea40508c577abf7089cf9
@@ -23,31 +14,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PenguinGame/Result.unity
     guid: bb6d512ca15cc4679a5373be1caea387
-  - enabled: 0
-    path: Assets/Scenes/PnguinGame/TimeLimit/fish/Penguin(fish)_timelimit.unity
-    guid: 73dbbe0c55c674c76a5089a5a3d6f9ca
-  - enabled: 0
-    path: Assets/Scenes/PnguinGame/TimeLimit/Coin/Penguin_TimeLimit_Score.unity
-    guid: 1bef6b86e983e4218a97af008ba3fd1d
-  - enabled: 0
-    path: Assets/Scenes/PnguinGame/aaa.unity
-    guid: 27578707a19b840948e5c8a65b34e85b
-  - enabled: 0
-    path: Assets/Scenes/PnguinGame/Scroll/Penguin_Scroll.unity
-    guid: 987481252cb264fc884e3c52b3be772b
-  - enabled: 0
-    path: Assets/Scenes/PnguinGame/Scroll/Penguin_Score_scroll.unity
-    guid: c6643e89b99e0403ab103b2d567ab0af
-  - enabled: 0
-    path: Assets/Scenes/PnguinGame/TimeLimit/Coin/Pengui_timelimit.unity
-    guid: b66ddf3fd814f4d99805355855791ec8
-  - enabled: 0
-    path: Assets/Scenes/Test/InputSystem.unity
-    guid: 86ceff4990c8c4e0da3e11e407bc8adc
-  - enabled: 0
-    path: Assets/Scenes/Test/Hockey.unity
-    guid: 35ad5a1180815404bb06919f6b34dac3
-  - enabled: 0
-    path: Assets/Scenes/PnguinGame/TimeLimit/fish/Penguin_TimeLimit.unity
-    guid: 9b512590e1b0a4ab182ff57638674ee8
   m_configObjects: {}

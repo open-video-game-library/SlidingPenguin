@@ -651,10 +651,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39d72793fd2a94cd886721d6ffe31c3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  homeButton:
-  - {fileID: 2199035347994997945}
-  retryButton:
-  - {fileID: 2199035347110241496}
+  homeButton: {fileID: 2199035347994997945}
+  retryButton: {fileID: 2199035347110241496}
 --- !u!4 &898096916
 Transform:
   m_ObjectHideFlags: 0
@@ -748,7 +746,7 @@ SpriteRenderer:
   m_Size: {x: 18.852167, y: 20.78}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1070166410
@@ -1460,6 +1458,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 208808971}
+    - target: {fileID: 5393581542420537374, guid: 6563c66acdfdb4e5a86683c28a47352b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8300000, guid: 6c0aa61484228489ca0cd9c41b344ce8, type: 3}
     - target: {fileID: 5393581542420537375, guid: 6563c66acdfdb4e5a86683c28a47352b, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1480,6 +1482,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 208808971}
+    - target: {fileID: 6079106507754292202, guid: 6563c66acdfdb4e5a86683c28a47352b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8300000, guid: 5589d28435e47423f9f74268c3b76f93, type: 3}
     - target: {fileID: 6079106508412502258, guid: 6563c66acdfdb4e5a86683c28a47352b, type: 3}
       propertyPath: m_Name
       value: TimeAttack_ScoreCanvas
@@ -1492,6 +1498,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 208808971}
+    - target: {fileID: 6079106508631151499, guid: 6563c66acdfdb4e5a86683c28a47352b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8300000, guid: 5589d28435e47423f9f74268c3b76f93, type: 3}
     - target: {fileID: 6238218323526016620, guid: 6563c66acdfdb4e5a86683c28a47352b, type: 3}
       propertyPath: m_SizeDelta.x
       value: 197.6

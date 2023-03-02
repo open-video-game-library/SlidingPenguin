@@ -24,7 +24,7 @@ namespace penguin
         public GameObject timeTextObj;
         public AudioClip gameOverSound;
         [SerializeField] private AudioClip dropSound;
-        [SerializeField] private AudioClip damageSound;
+        [SerializeField] private AudioClip timeUpSound;
 
         public GameObject GameManager;
         GameManager gamemanager;
@@ -131,7 +131,7 @@ namespace penguin
             else
             {
                 timeUpText.SetActive(true);
-                _missSound.clip = damageSound;
+                _missSound.clip = timeUpSound;
                 penguinRigidBody.velocity = Vector3.zero;
                 penguinRigidBody.angularVelocity = 0;
             }
