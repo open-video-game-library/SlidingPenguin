@@ -77,7 +77,7 @@ namespace penguin
             countDownImage.color = new Color(0,0,0,0);
             timeTextObject.SetActive(false);
             fishNumberTextObject.SetActive(false);
-            limitedTime = HomeSceneTransitionManager.getTimelimit();
+            limitedTime = HomeSceneTransitionManager.GetLimitedTime();
             if (limitedTime == 0)
             {
                 limitedTime = setlimitedTime;
@@ -246,7 +246,6 @@ namespace penguin
                 gameStart=true;   
                 countdownText.text="";
                 penguinMove.enabled = true;
-                bgm.Play();
             }
         }
 
@@ -267,6 +266,7 @@ namespace penguin
         private IEnumerator RemoveCountDownNumber()
         {
             yield return new WaitForSeconds(1.0f);
+            bgm.Play();
             countDownImage.color = new Color(0,0,0,0);
         }
 

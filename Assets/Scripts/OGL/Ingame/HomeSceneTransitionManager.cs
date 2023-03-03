@@ -2,113 +2,91 @@ using System.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace penguin
 {
     public class HomeSceneTransitionManager : MonoBehaviour
     {
-        [SerializeField] private Button _startGameButton;
-        [SerializeField] private Button _settingButton;
-        [SerializeField] private Button _homeButton;
-        [SerializeField] private GameObject audiomanager;
-        public static float sensitivity;
-        public static string name;
-        public static string age;
-        public GameObject sensitivitysliderObject;
+        [FormerlySerializedAs("_startGameButton")] [SerializeField] private Button startGameButton;
+        [FormerlySerializedAs("_settingButton")] [SerializeField] private Button settingButton;
+        [FormerlySerializedAs("_homeButton")] [SerializeField] private Button homeButton;
+        private static float sensitivity;
+        [FormerlySerializedAs("sensitivitysliderObject")] public GameObject sensitivitySliderObject;
         private Slider sensitivitySlider;
-        [SerializeField] private static int timelimit;
+        private static int timeLimit;
         [SerializeField] private  GameObject timelimitsliderObject;
         private Slider timelimitSlider;
-        [SerializeField] private  GameObject homecanvas;
-        [SerializeField] private  GameObject adjustcanvas;
-        [SerializeField] private  GameObject infoInputcanvas;
-        [SerializeField] private  AudioSource soundEffect;
-        [SerializeField] private  AudioSource backGroundMusic;
-        [SerializeField] private AudioClip startClip;
-        //Player Info
-        public GameObject nameTextObj;
-        public GameObject ageTextObj;
-        private Text _nameText;
-        private Text _ageText;
+        [FormerlySerializedAs("homecanvas")] [SerializeField] private  GameObject homeCanvas;
+        [FormerlySerializedAs("adjustcanvas")] [SerializeField] private  GameObject adjustCanvas;
+        [SerializeField] private StartSceneAudioManager audioManager;
 
         // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
-            _homeButton.onClick.AddListener(HomeButtonClicked);
-            _startGameButton.onClick.AddListener(StartButtonClicked);
-            _settingButton.onClick.AddListener(SettingButtonClicked);
-            sensitivitySlider = sensitivitysliderObject.GetComponent<Slider>();
+            // Initial button assignments
+            homeButton.onClick.AddListener(HomeButtonClicked);
+            startGameButton.onClick.AddListener(StartButtonClicked);
+            settingButton.onClick.AddListener(SettingButtonClicked);
+            
+            // Screen active setting at startup
+            homeCanvas.SetActive(true);
+            adjustCanvas.SetActive(false);
+            
+            // Play BGM
+            StartCoroutine(BGMStart());
+            
+            // Slider assignment
+            sensitivitySlider = sensitivitySliderObject.GetComponent<Slider>();
             timelimitSlider = timelimitsliderObject.GetComponent<Slider>();
-            //Player Info
-            _nameText = nameTextObj.GetComponent<Text>();
-            _ageText = ageTextObj.GetComponent<Text>();
-            infoInputcanvas.SetActive(false);
-            homecanvas.SetActive(true);
-            adjustcanvas.SetActive(false);
-            StartCoroutine(BGMstart());
         }
 
 
 
-        void StartButtonClicked()
+        private void StartButtonClicked()
         {
-            soundEffect.clip = startClip;
-            soundEffect.Play();
-            StartCoroutine("load");
-            name = _nameText.text;
-            age = _ageText.text;
+            audioManager.PlayTransitionClickSound();
+            StartCoroutine("TransitionToMainScene");
             sensitivity = sensitivitySlider.value * 6;
-            timelimit = (int)timelimitSlider.value;
-            getSensitivity();
-            getTimelimit();
-            getPlayerName();
-            getPlayerAge();
+            timeLimit = (int)timelimitSlider.value;
+            GetSensitivity();
+            GetLimitedTime();
         }
 
-        public void SettingButtonClicked()
+        private void SettingButtonClicked()
         {
-            adjustcanvas.SetActive(true);
-            soundEffect.Play();
+            homeCanvas.SetActive(false);
+            adjustCanvas.SetActive(true);
+            audioManager.PlayNormalClickSound();
         }
 
-        void HomeButtonClicked()
+        private void HomeButtonClicked()
         {
-            homecanvas.SetActive(true);
-            adjustcanvas.SetActive(false);
-            infoInputcanvas.SetActive(false);
-            BGMstart();
+            homeCanvas.SetActive(true);
+            adjustCanvas.SetActive(false);
+            //BGMStart();
         }
-
-        public static string getPlayerName() 
-        {
-            return name;
-        }
-
-        public static string getPlayerAge() 
-        {
-            return age;
-        }
-
-        public static float getSensitivity() 
+        
+        public static float GetSensitivity() 
         {
             return sensitivity;
         }
 
-        public static int getTimelimit()
+        public static int GetLimitedTime()
         {
-            return timelimit;
+            return timeLimit;
         }
 
-        private IEnumerator BGMstart()
+        private IEnumerator BGMStart()
         {
             yield return new WaitForSeconds(1.0f);
-            backGroundMusic.Play();
+            audioManager.PlayBGM();
         }
 
-        private IEnumerator load()
+        private IEnumerator TransitionToMainScene()
         {
-            backGroundMusic.Pause();
+            audioManager.PauseBGM();
             yield return new WaitForSeconds(0.8f);
             SceneManager.LoadScene ("InGame");
         }

@@ -41,8 +41,6 @@ public class GoalDetection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _name = HomeSceneTransitionManager.getPlayerName();
-        _age = HomeSceneTransitionManager.getPlayerAge();
         bgm=bgmObj.GetComponent<AudioSource>();
         dataManager=dataManagerObj.GetComponent<DataManager>();
         gameFin=false;
@@ -52,14 +50,7 @@ public class GoalDetection : MonoBehaviour
         clearTextObj.SetActive(false);
         _goalSound = gameObject.GetComponent<AudioSource>();
         _fin=false;
-        penguinMove=penguin.GetComponent<PenguinMove>(); 
-        /*
-        mizuiroScoreText=mizuiroScoreTextObj.GetComponent<Text>();
-        greenScoreText=greenScoreTextObj.GetComponent<Text>();
-        redScoreText=redScoreTextObj.GetComponent<Text>();
-        pinkScoreText=pinkScoreTextObj.GetComponent<Text>();
-        yellowScoreText=yellowScoreTextObj.GetComponent<Text>();
-        */
+        penguinMove=penguin.GetComponent<PenguinMove>();
         _inputDataManager=GameObject.Find("GameManager").GetComponent<InputDataManager>();
          GameObject[] fish = GameObject.FindGameObjectsWithTag("Fish");
          maxFishNumber = fish.Length;

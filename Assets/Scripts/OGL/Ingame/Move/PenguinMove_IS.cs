@@ -32,7 +32,7 @@ namespace penguin{
     // Start is called before the first frame update
     void Start()
     {
-        SPEED=HomeSceneTransitionManager.getSensitivity();
+        SPEED=HomeSceneTransitionManager.GetSensitivity();
         rb=this.GetComponent<Rigidbody2D>();
         rb.velocity=new Vector3(0,0,0);
         defaultSpeed=SPEED;
