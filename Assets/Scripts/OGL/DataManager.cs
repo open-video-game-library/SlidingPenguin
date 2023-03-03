@@ -25,10 +25,6 @@ public class DataManager : MonoBehaviour
          public float rightNum;
          public float dashNum;
          public bool success;
-         public string age;
-         //public int fish_num;
-         //public int score;
-         public string name;
          public int fish_num;
          public float clear_time;
          public float distance;
@@ -40,11 +36,9 @@ public class DataManager : MonoBehaviour
  	// 試行が終わったときに呼び出す関数
  	// Hunter-Chameleonでは、ゲーム終了のときに「スコア」「ヒット数」「トリガーを引いた数」を引数としてこの関数を呼び出しています
  	// ゲームに応じて分かりやすい変数名にしてください
-     public void postData(string _name,string _age,bool _success,int _hitCount,float _clear_time,float _distance,float _InputNumperSec,float _upNum,float _downNum,float _leftNum,float _dashNum,float _rightNum,List<float> _up_on,List<float> _up_off)
+     public void postData(bool _success,int _hitCount,float _clear_time,float _distance,float _InputNumperSec,float _upNum,float _downNum,float _leftNum,float _dashNum,float _rightNum,List<float> _up_on,List<float> _up_off)
      {
          Data data = new Data(); // クラスを生成
-         data.name = _name;  //名前
-         data.age = _age;  //年齢
          data.success = _success; // スコア
          data.fish_num = _hitCount; // ヒット数
          data.clear_time = _clear_time; // ヒット数

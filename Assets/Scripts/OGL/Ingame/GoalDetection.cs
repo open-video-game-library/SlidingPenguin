@@ -13,15 +13,12 @@ public class GoalDetection : MonoBehaviour
     GameManager _gameManager;
     private HomeSceneTransitionManager _sceneMana_home;
     public GameObject IngameCanvas;
-    //public GameObject ScoreCanvas;
+   
     CoinController CoinController;
     public static float minutes;
     public static float seconds;
     public static float ms;
-    public GameObject clearTextObj;
-    AudioSource _goalSound;
     public bool _fin;
-    public AudioClip clearsound;
     PenguinMove penguinMove;           ///ここ変える
     public GameObject penguin;
     public static int a;
@@ -29,8 +26,6 @@ public class GoalDetection : MonoBehaviour
     DataManager dataManager;
     float start_pos_y=0;
     public float _distance;
-    public GameObject bgmObj;
-    AudioSource bgm;
     private InputDataManager _inputDataManager;
     public string _name;
     public string _age;
@@ -38,17 +33,16 @@ public class GoalDetection : MonoBehaviour
     private static int itemNumber;
 
     private static int maxFishNumber;
+
+    [SerializeField] private InGameAudioManager audioManager;
     // Start is called before the first frame update
     void Start()
     {
-        bgm=bgmObj.GetComponent<AudioSource>();
         dataManager=dataManagerObj.GetComponent<DataManager>();
         gameFin=false;
         //ScoreCanvas.SetActive(false);
         CoinController=GameManager.GetComponent<CoinController>();
         _gameManager=GameManager.GetComponent<GameManager>();
-        clearTextObj.SetActive(false);
-        _goalSound = gameObject.GetComponent<AudioSource>();
         _fin=false;
         penguinMove=penguin.GetComponent<PenguinMove>();
         _inputDataManager=GameObject.Find("GameManager").GetComponent<InputDataManager>();
@@ -63,11 +57,11 @@ public class GoalDetection : MonoBehaviour
     { 
         if(other.gameObject.tag=="Player")
         {
-            bgm.Pause();
+            audioManager.bgm.Pause();
             gameFin=true;
             _fin=true;
             gamefinish();
-            dataManager.postData(_name,_age,true,penguinMove.fishcounter,_gameManager.elapsedTime,180.0f,(float)_gameManager.totalNum/_gameManager.elapsedTime,(float)_gameManager.upNum/_gameManager.elapsedTime,(float)_gameManager.downNum/_gameManager.elapsedTime,(float)_gameManager.leftNum/_gameManager.elapsedTime,(float)_gameManager.rightNum/_gameManager.elapsedTime,(float)_gameManager.dashNum/_gameManager.elapsedTime,_inputDataManager.up_on,_inputDataManager.up_off); 
+            dataManager.postData(true,penguinMove.fishcounter,_gameManager.elapsedTime,180.0f,(float)_gameManager.totalNum/_gameManager.elapsedTime,(float)_gameManager.upNum/_gameManager.elapsedTime,(float)_gameManager.downNum/_gameManager.elapsedTime,(float)_gameManager.leftNum/_gameManager.elapsedTime,(float)_gameManager.rightNum/_gameManager.elapsedTime,(float)_gameManager.dashNum/_gameManager.elapsedTime,_inputDataManager.up_on,_inputDataManager.up_off); 
             penguinMove.enabled=false;
             Rigidbody2D rb = penguin.GetComponent<Rigidbody2D>();
             rb.velocity = Vector3.zero;
@@ -92,10 +86,9 @@ public class GoalDetection : MonoBehaviour
         MsPoint();
         //getfishPoint();
         StartCoroutine("gameClear");
-        clearTextObj.SetActive(true);
 
         //sound
-        _goalSound.Play();
+        audioManager.applause.Play();
     }
 
     public static int getmizuiroPoint() {
@@ -145,8 +138,7 @@ public class GoalDetection : MonoBehaviour
     private IEnumerator gameClear() 
     {
         yield return new WaitForSeconds(2.0f);
-        _goalSound.clip=clearsound;
-        _goalSound.Play();
+        audioManager.gameClear.Play();
         //scaleAnimation = true;
         yield return new WaitForSeconds(2.0f);
         //scaleAnimation = false;

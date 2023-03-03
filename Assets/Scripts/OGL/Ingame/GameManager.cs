@@ -14,11 +14,8 @@ namespace penguin
         float countdown = 3.9f;
         int count=-1;
         public bool gameStart=false;
-        public GameObject countdownTextObj;
-        Text countdownText;
         public GameObject penguin; 
         public float elapsedTime;
-        AudioSource _countDownSound;
         bool _stageintroductionfin=false;
         bool once=false;
         public GameObject cam;
@@ -27,16 +24,8 @@ namespace penguin
         public float ms;
         //float oldTime=0;
         bool stageintro=false;
-        [SerializeField] GameObject ingameBgm;
-        AudioSource bgm;
-        //public GameObject childpenguin;
-        AudioSource penguin_voice;
         public GameObject stageObj;
         StageDetection stagedetection;
-        public GameObject stageintroBGMObj;
-        AudioSource stageIntroBGM;
-        [SerializeField] private AudioSource countDownSound;
-        [SerializeField] private AudioSource rushAlert;
 
         public int upNum=0;
         public int downNum=0;
@@ -54,8 +43,8 @@ namespace penguin
         [SerializeField] private Sprite countDownThree;
         [SerializeField] private Sprite countDownGo;
 
-        [SerializeField] private float limitedTime;
-        private float setlimitedTime;
+        private float limitedTime;
+        [SerializeField] private float setlimitedTime;
         [SerializeField] private Text timeText;
 
         [SerializeField] private PenguinMove penguinMove;
@@ -63,15 +52,12 @@ namespace penguin
         [SerializeField] private GameObject timeTextObject;
         [SerializeField] private GameObject fishNumberTextObject;
 
+        [SerializeField] private InGameAudioManager audioManager;
         private bool isAlert;
         
         private void Start()
         {
-            stageIntroBGM=stageintroBGMObj.GetComponent<AudioSource>();
             stagedetection=stageObj.GetComponent<StageDetection>();
-            bgm = ingameBgm.GetComponent<AudioSource>();
-            countdownText=countdownTextObj.GetComponent<Text>();
-            _countDownSound = countDownSound.gameObject.GetComponent<AudioSource>();
 
             _penguinRenderer = penguin.GetComponent<SpriteRenderer>();
             countDownImage.color = new Color(0,0,0,0);
@@ -95,7 +81,7 @@ namespace penguin
                     cam.GetComponent<Transform>().position -= new Vector3(0,0.4f,0);
                     if(cam.GetComponent<Transform>().position.y <= 0 || Input.GetKey(KeyCode.Space))    
                     {
-                        stageIntroBGM.Pause();
+                        audioManager.stageIntoro.Pause();
                         _stageintroductionfin=true;
                         timeTextObject.SetActive(true);
                         fishNumberTextObject.SetActive(true);
@@ -165,11 +151,11 @@ namespace penguin
 
         private IEnumerator AlertLeftTime()
         {
-            bgm.Pause();
-            rushAlert.Play();
+            audioManager.bgm.Play();
+            audioManager.timeAlert.Play();
             yield return new WaitForSeconds(1.5f);
-            bgm.pitch = 1.2f;
-            bgm.Play();
+            audioManager.bgm.pitch = 1.2f;
+            audioManager.bgm.Play();
         }
 
         private string AdjustRemainingTime(int remainingTime)
@@ -242,9 +228,7 @@ namespace penguin
                 countDownImage.color =  new Color(1,1,1,1);
                 StartCoroutine(RemoveCountDownNumber());
                 countDownImage.sprite = countDownGo;
-                countdownText.fontSize=60;
-                gameStart=true;   
-                countdownText.text="";
+                gameStart=true;
                 penguinMove.enabled = true;
             }
         }
@@ -258,15 +242,13 @@ namespace penguin
             cam.SetActive(false); 
             yield return new WaitForSeconds (1.0f);
             once=true;
-            _countDownSound.Play();
-         
-        
-        }
+            audioManager.countdown.Play();
+      }
 
         private IEnumerator RemoveCountDownNumber()
         {
             yield return new WaitForSeconds(1.0f);
-            bgm.Play();
+            audioManager.bgm.Play();
             countDownImage.color = new Color(0,0,0,0);
         }
 

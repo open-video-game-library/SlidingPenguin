@@ -17,21 +17,15 @@ namespace penguin
         SpriteRenderer _fishrenderer;
         public bool CourseOut;
         private float _alpha;
-        AudioSource _missSound;
         public GameObject goalObj;
         GoalDetection _goalDetection;
         public static bool _gameclear;
         public GameObject timeTextObj;
-        public AudioClip gameOverSound;
-        [SerializeField] private AudioClip dropSound;
-        [SerializeField] private AudioClip timeUpSound;
 
         public GameObject GameManager;
         GameManager gamemanager;
         public GameObject dataManagerObj;
         DataManager dataManager;
-        public GameObject datastatusTextObj;
-        Text datastatusText;
         float start_pos_y=0;
         public float _distance;
         public GameObject bgmObj;
@@ -41,6 +35,8 @@ namespace penguin
         [SerializeField] private GameObject timeUpText;
 
         [SerializeField] private PenguinDisappear penguinDisappear;
+
+        [SerializeField] private InGameAudioManager audioManager;
         public enum GameOverType
         {
             TIMEUP,
@@ -53,12 +49,10 @@ namespace penguin
         void Start()
         {
             bgm=bgmObj.GetComponent<AudioSource>();
-            datastatusText=datastatusTextObj.GetComponent<Text>();
             dataManager = dataManagerObj.GetComponent<DataManager>();
             _penguinShadowRenderer=penguinShadow.GetComponent<SpriteRenderer>();
             penguinMove=penguinShadow.GetComponent<PenguinMove>();
             CourseOut=false;
-            _missSound=gameObject.GetComponent<AudioSource>();
             gamemanager=GameManager.GetComponent<GameManager>();
             _goalDetection=goalObj.GetComponent<GoalDetection>();
             timeUpText.SetActive(false);
@@ -99,18 +93,6 @@ namespace penguin
                 pinkPoint();
                 yellowPoint();
             }
-            
-            /*
-            if(other.gameObject.tag=="fish")
-            {
-                other.gameObject.GetComponent<Collider2D>().enabled=false;
-                //Destroy(other.gameObject);
-                _fishrenderer=other.gameObject.GetComponent<SpriteRenderer>();
-                _fishrenderer.sortingLayerName="1";
-               // other.gameObject.GetComponent<fishGet>().enabled=false;
-            }
-            */
-
         }
         
         public IEnumerator GameOver(GameOverType gameOverType) 
@@ -123,7 +105,7 @@ namespace penguin
             if (gameOverType == GameOverType.COURCEOUT)
             {
                 CourseOut=true;
-                _missSound.clip = dropSound;
+                audioManager.drop.Play();
                 
                 _penguinShadowRenderer.sortingLayerName="1";
                 penguinShadow.GetComponent<Collider2D>().enabled=false;
@@ -131,7 +113,7 @@ namespace penguin
             else
             {
                 timeUpText.SetActive(true);
-                _missSound.clip = timeUpSound;
+                audioManager.timeUp.Play();
                 penguinRigidBody.velocity = Vector3.zero;
                 penguinRigidBody.angularVelocity = 0;
             }
@@ -140,25 +122,21 @@ namespace penguin
             
             gameclear();
 
-            if(dataManager==null)
+            if (dataManager != null)
             {
-                datastatusText.text="null";
-            }
-            else
-            {
-                int fish_num=penguinMove.fishcounter;
+                 int fish_num=penguinMove.fishcounter;
                 _distance=penguinShadow.transform.position.y-start_pos_y;
-                dataManager.postData(_goalDetection._name,_goalDetection._age,false,fish_num,100000000,_distance,(float)gamemanager.totalNum/gamemanager.elapsedTime,(float)gamemanager.upNum/gamemanager.elapsedTime,(float)gamemanager.downNum/gamemanager.elapsedTime,(float)gamemanager.leftNum/gamemanager.elapsedTime,(float)gamemanager.rightNum/gamemanager.elapsedTime,(float)gamemanager.dashNum/gamemanager.elapsedTime,_inputDataManager.up_on,_inputDataManager.up_off);             ///データポストpublic void postData(bool success,float _cleartime, int _fish_num) penguinMove_IS.fishcounter
-                datastatusText.text="post";
+                dataManager.postData(false,fish_num,100000000,_distance,(float)gamemanager.totalNum/gamemanager.elapsedTime,(float)gamemanager.upNum/gamemanager.elapsedTime,(float)gamemanager.downNum/gamemanager.elapsedTime,(float)gamemanager.leftNum/gamemanager.elapsedTime,(float)gamemanager.rightNum/gamemanager.elapsedTime,(float)gamemanager.dashNum/gamemanager.elapsedTime,_inputDataManager.up_on,_inputDataManager.up_off);        
             }
+            
+           
             
             
             
             yield return new WaitForSeconds(0.1f);
-            _missSound.Play();
+            audioManager.timeUp.Play();
             yield return new WaitForSeconds(1.0f);
-            _missSound.clip = gameOverSound;
-            _missSound.Play();
+            audioManager.gameOver.Play();
             yield return new WaitForSeconds(1.8f);
             SceneManager.LoadScene("Result");
         }

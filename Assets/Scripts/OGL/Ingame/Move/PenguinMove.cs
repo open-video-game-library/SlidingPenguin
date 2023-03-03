@@ -8,29 +8,21 @@ namespace penguin{
 {
     //public GameObject Ground;
     public int fishcounter=0;
-    CollisionDetection CollisionDetection;
-    Rigidbody2D rb; 
-    [SerializeField]public float SPEED;
-    //float defaultSpeed;
-    float fighSpeed;
-    //float highSpeed;
-    Transform transform;
-    //public GameObject VeloObj;
-    Text VeloTex;
-    public GameObject sensiobj;
-    //[SerializeField]float brake=0.99f;
-    Text sensitext;
-    //public AudioSource brakesoud;
-    //public AudioClip audioClip1;
-    //Animator animator;
+    private CollisionDetection CollisionDetection;
+    private Rigidbody2D rb; 
+    [SerializeField] private float SPEED;
+    private float fighSpeed;
+    private Transform transform;
+    private Text VeloTex;
+    private Text sensitext;
     private bool acceleration;
-    Vector3 Force;
+    private Vector3 Force;
     [SerializeField] private Text fishNumberText;
     private float _speed;
-
-    [SerializeField] private AudioSource acquiredSound;
-    [SerializeField] private AudioSource accelerationSound;
+    
     [SerializeField] private Animator penguinMoveAnimator;
+
+    [SerializeField] private InGameAudioManager audioManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +31,6 @@ namespace penguin{
         rb.velocity = new Vector3(0, 0, 0);
         transform = gameObject.GetComponent<Transform>();
         enabled = false;
-        sensitext = sensiobj.GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -48,7 +39,6 @@ namespace penguin{
         
         Move();
         Brake();
-        sensitext.text = SPEED.ToString();
         if(SPEED == 0)
         {
             SPEED = 3;
@@ -115,7 +105,7 @@ namespace penguin{
             acceleration = true;
             StartCoroutine("PlayAccelerationAnimation");
             
-            accelerationSound.Play();
+            audioManager.acceleration.Play();
         }
         
     }
@@ -134,7 +124,7 @@ namespace penguin{
         {
             fishcounter ++;
             fishNumberText.text = "×" + fishcounter;
-            acquiredSound.Play();
+            audioManager.itemAcquire.Play();
         }
     }
     
