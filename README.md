@@ -33,18 +33,24 @@ SlidingPenguinは、海に落ちないように氷の上のペンギンを操作
 - キーボード操作
 ![image](https://user-images.githubusercontent.com/71160720/195009697-ebcbc349-851d-403d-b26a-79e8720eb16d.png)
 
+- ゲームパッド操作
+![SlidingPenguin_control](https://user-images.githubusercontent.com/126433429/224565635-1089822c-00e6-4140-bd1b-6c7ae86327fa.png)
 
 
 ## Features
 
 パラメータ調整機能
 - 移動感度
+- 制限時間
 
 パラメータ出力機能
 - 成否
 - 入手したサカナの数
 - クリア時間
 - 移動距離
+- 移動感度
+- 制限時間
+
 
 ### 研究利用例
 
