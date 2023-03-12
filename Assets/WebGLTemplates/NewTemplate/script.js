@@ -17,11 +17,11 @@ function download_data() {
     });
     */
     function download_data() {
-        //let loghead = "name,age,success,fish_num,clear_time,distance,upNum,downNum,leftNum,rightNum,dashNum,up_on,up_off\n";
-        let loghead = "名前,年齢,成功/失敗,獲得した魚の数,クリア時間,到達距離,入力数/秒,上入力数/秒,下入力数/秒,左入力数/秒,右入力数/秒,加速入力数/秒,上入力時の経過時間,上入力を離した時の経過時間\n";
+        //let loghead = "name,age,success,fish_num,clear_time,distance";
+        let loghead = "名前,年齢,成功/失敗,獲得した魚の数,クリア時間,到達距離\n";
         let logdata = "";
         datas.map(function (d) {
-            logdata += d.name+","+d.age+","+d.success+","+d.fish_num+","+d.clear_time +","+d.distance+","+ d.inputNum + "," + d.upNum+"," +d.downNum + "," + d.leftNum + "," + d.rightNum + ","+d.dashNum + "," + d.up_on+"," + d.up_off + "\n";
+            logdata += d.name+","+d.age+","+d.success+","+d.fish_num+","+d.clear_time +","+d.distance + "\n";
         });
    
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | {{{PRODUCT_NAME}}}</title>
+    <title>Unity WebGL Player | OVGL</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
 </head>
@@ -19,27 +19,27 @@
             </div>
         </div>
         <div id="unity-mobile-warning">
-            WebGL builds are not supported on mobile devices.
+            
         </div>
         <div id="unity-footer">
             <div id="unity-webgl-logo"></div>
             <div id="unity-fullscreen-button"></div>
-            <div id="unity-build-title">{{{PRODUCT_NAME}}}</div>
+            <div id="unity-build-title">OVGL</div>
         </div>
     </div>
     <!-- ↓これが重要 jsファイル読み込み↓ -->
     <script src="script.js"></script>
     <script>
         var buildUrl = "Build";
-        var loaderUrl = buildUrl + "/{{{ LOADER_FILENAME }}}";
+        var loaderUrl = buildUrl + "/SlidingPenguin.loader.js";
         var config = {
-            dataUrl: buildUrl + "/{{{ DATA_FILENAME }}}",
-            frameworkUrl: buildUrl + "/{{{ FRAMEWORK_FILENAME }}}",
-            codeUrl: buildUrl + "/{{{ CODE_FILENAME }}}",
+            dataUrl: buildUrl + "/SlidingPenguin.data",
+            frameworkUrl: buildUrl + "/SlidingPenguin.framework.js",
+            codeUrl: buildUrl + "/SlidingPenguin.wasm",
             streamingAssetsUrl: "StreamingAssets",
-            companyName: "{{{ COMPANY_NAME }}}",
-            productName: "{{{ PRODUCT_NAME }}}",
-            productVersion: "{{{ PRODUCT_VERSION }}}",
+            companyName: "DefaultCompany",
+            productName: "OVGL",
+            productVersion: "1.0",
         };
 
         var container = document.querySelector("#unity-container");
