@@ -94,7 +94,7 @@ namespace penguin
         
         private IEnumerator SwitchInGame()
         {
-            statusManager.CurrentStatus = InGameStatus.InGame;
+            statusManager.CurrentStatus = InGameStatus.InGameNormal;
             yield return new WaitForSeconds(1.0f);
             audio.bgm.Play();
             countDownImage.color = new Color(0,0,0,0);

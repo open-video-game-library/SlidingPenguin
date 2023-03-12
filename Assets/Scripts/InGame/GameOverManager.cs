@@ -87,7 +87,7 @@ namespace penguin
             {
                 int fishNum = FishManager.GetAcquiredNumber();
                 float distance = penguinModel.transform.position.y - penguinStartPositionY;
-                outputDataManager.PostData(false, fishNum, "undefined", distance);        
+                outputDataManager.PostData(false, fishNum, "undefined", distance, ParameterManager.sensitivity, ParameterManager.limitedTime);        
             }
         }
         

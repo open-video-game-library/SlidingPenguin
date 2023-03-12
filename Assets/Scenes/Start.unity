@@ -152,6 +152,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 336707561, guid: aa9abdcec257a43c4bce69bf6a2947b7, type: 3}
+      propertyPath: m_Value
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 336707561, guid: aa9abdcec257a43c4bce69bf6a2947b7, type: 3}
+      propertyPath: m_MaxValue
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 336707561, guid: aa9abdcec257a43c4bce69bf6a2947b7, type: 3}
+      propertyPath: m_MinValue
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 664864118, guid: aa9abdcec257a43c4bce69bf6a2947b7, type: 3}
+      propertyPath: m_MinValue
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 964865144, guid: aa9abdcec257a43c4bce69bf6a2947b7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 964865144, guid: aa9abdcec257a43c4bce69bf6a2947b7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 964865144, guid: aa9abdcec257a43c4bce69bf6a2947b7, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 994781842, guid: aa9abdcec257a43c4bce69bf6a2947b7, type: 3}
       propertyPath: audio
       value: 
@@ -160,6 +188,34 @@ PrefabInstance:
       propertyPath: uiSwitcher
       value: 
       objectReference: {fileID: 809297258}
+    - target: {fileID: 1408871557, guid: aa9abdcec257a43c4bce69bf6a2947b7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1408871557, guid: aa9abdcec257a43c4bce69bf6a2947b7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1589159647, guid: aa9abdcec257a43c4bce69bf6a2947b7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1589159647, guid: aa9abdcec257a43c4bce69bf6a2947b7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1833055406, guid: aa9abdcec257a43c4bce69bf6a2947b7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1833055406, guid: aa9abdcec257a43c4bce69bf6a2947b7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1833055406, guid: aa9abdcec257a43c4bce69bf6a2947b7, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 339151966554917018, guid: aa9abdcec257a43c4bce69bf6a2947b7, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -251,6 +307,10 @@ PrefabInstance:
     - target: {fileID: 339151966554917022, guid: aa9abdcec257a43c4bce69bf6a2947b7, type: 3}
       propertyPath: m_Name
       value: SettingCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 339151966554917022, guid: aa9abdcec257a43c4bce69bf6a2947b7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa9abdcec257a43c4bce69bf6a2947b7, type: 3}
@@ -781,6 +841,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HomeCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 529766003522933658, guid: 1c1d88d353ee04d128b2d3d1ae3ce476, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3817992689483669760, guid: 1c1d88d353ee04d128b2d3d1ae3ce476, type: 3}
       propertyPath: audio
       value: 
@@ -897,7 +961,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.2
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

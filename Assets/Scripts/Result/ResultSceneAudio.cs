@@ -8,7 +8,8 @@ namespace penguin
     {
         public AudioSource NormalClick;
         public AudioSource TransitionClick;
-        
+        public AudioSource CountUp;
+
     }
 
 }

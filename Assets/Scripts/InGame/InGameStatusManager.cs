@@ -12,8 +12,8 @@ namespace penguin
         Null,
         StageIntroduction,
         CountDown,
-        InGame,
-        HurryUpAlert,
+        InGameNormal,
+        HurryUp,
         ReachGoal,
         CourseOut,
         TimeUp

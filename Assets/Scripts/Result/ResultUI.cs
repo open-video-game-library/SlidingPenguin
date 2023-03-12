@@ -35,29 +35,30 @@ public class ResultUI : MonoBehaviour
     // 獲得した魚のカウント時に落下させる魚の骨オブジェクト
     [SerializeField] private GameObject fishBone;
 
-    // 獲得した魚のカウント音を再生するために参照するクラス
-    [SerializeField] private AudioSource countSE;
-    
-    
+    // SE再生・停止クラス
+    [SerializeField] private ResultSceneAudio audio;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        // リザルトテキストを初期設定
         InitializeText();
-        
-        // ゲームの成功・失敗に応じてタイトルを設定
         SetTitle();
-        
-        
     }
 
+    // リザルトテキストを初期設定
+    private void InitializeText()
+    {
+        acquiredFishNumberText.text = "0";
+        itemMaximumNumberText.text = "/" + FishManager.GetMaximumNumber();
+    }
+
+    // ゲームの成功・失敗に応じてタイトルを設定
     private void SetTitle()
     {
         if(GameClearManager.IsClear())
         { 
             resultSprite.texture = gameClearSprite;
-            
-            // 獲得した魚をカウントする演出を開始
             StartCoroutine("CountUpFishNumber");
         }
         else
@@ -66,17 +67,10 @@ public class ResultUI : MonoBehaviour
         }
     }
 
-    private void InitializeText()
-    {
-        acquiredFishNumberText.text = "0";
-        itemMaximumNumberText.text = "/" + FishManager.GetMaximumNumber();
-    }
-   
-
+    // 獲得した魚をカウントする演出を開始
     private IEnumerator CountUpFishNumber()
     {
         acquiredFishNumber= FishManager.GetAcquiredNumber();
-        Debug.Log("acquiredFishNumber" + acquiredFishNumber);
         for (int i = 0; i < acquiredFishNumber; i++)
         {
             yield return new WaitForSeconds (0.05f);
@@ -91,7 +85,7 @@ public class ResultUI : MonoBehaviour
                 acquiredFishNumberText.color = Color.yellow;
             }
             acquiredFishNumberText.text = (i + 1).ToString();
-            countSE.Play();
+            audio.CountUp.Play();
         }
         
 

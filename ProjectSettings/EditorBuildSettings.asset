@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/PenguinGame/Start.unity
+    path: Assets/Scenes/Start.unity
     guid: 81e7115624fea40508c577abf7089cf9
   - enabled: 1
-    path: Assets/Scenes/PenguinGame/InGame.unity
+    path: Assets/Scenes/InGame.unity
     guid: c6371a622e0d44058a10b5d6d047b2a8
   - enabled: 1
-    path: Assets/Scenes/PenguinGame/Result.unity
+    path: Assets/Scenes/Result.unity
     guid: bb6d512ca15cc4679a5373be1caea387
   m_configObjects: {}

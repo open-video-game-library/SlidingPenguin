@@ -25,6 +25,7 @@ namespace  penguin
         private void Start()
         {
             maximumFishNumber = GameObject.FindGameObjectsWithTag("Fish").Length;
+            FishNumber = 0;
         }
 
         private void OnTriggerEnter2D(Collider2D other)

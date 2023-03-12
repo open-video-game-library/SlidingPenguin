@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,7 +30,12 @@ namespace penguin
         
         // InGameシーンのUIスイッチ処理を扱うクラス
         [SerializeField] private InGameUISwitcher inGameUISwitcher;
-        
+
+
+        private void Start()
+        {
+            IsSuccess = false;
+        }
 
         public void GameClear()
         {
@@ -40,7 +46,7 @@ namespace penguin
             inGameUISwitcher.UnActivateInGameUI();
 
             // データポスト
-            outputDataManager.PostData(true, FishManager.GetAcquiredNumber(), timeKeeper.elapsedTime.ToString(), 200.0f); 
+            outputDataManager.PostData(true, FishManager.GetAcquiredNumber(), timeKeeper.elapsedTime.ToString(), 200.0f, ParameterManager.sensitivity, ParameterManager.limitedTime); 
             
             // ペンギンを停止させ、操作をoffにする
             penguinBehavior.Stop(0);

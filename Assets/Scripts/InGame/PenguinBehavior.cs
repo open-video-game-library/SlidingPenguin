@@ -42,7 +42,9 @@ namespace penguin{
         // Update is called once per frame
         void Update()
         {
-            if (statusManager.CurrentStatus == InGameStatus.InGame)
+            bool isInGame = (statusManager.CurrentStatus == InGameStatus.InGameNormal ||
+                             statusManager.CurrentStatus == InGameStatus.HurryUp);
+            if (isInGame)
             {
                 float horizon = Input.GetAxis("Horizontal");
                 float vertical = Input.GetAxis("Vertical");
