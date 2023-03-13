@@ -8,21 +8,13 @@ function add_data(jsonObj) {
 }
 
 // データをcsv形式にし、ダウンロード
-/*
+
 function download_data() {
-    let loghead = "id,score,hit_num,hit_rate\n";
+    let loghead = "名前,年齢,成功/失敗,獲得した魚の数,クリア時間,到達距離,移動感度,制限時間\n";
     let logdata = "";
     datas.map(function (d) {
-        logdata += d.id + "," + d.score + "," + d.hit_num + "," + d.hit_rate + "\n";
+        logdata += d.Success + "," + d.FishNumber + "," + d.ClearTime + "," + d.MovingDistance + "," + d.Sensitivity + "," + d.LimitedTime"\n";
     });
-    */
-    function download_data() {
-        //let loghead = "name,age,success,fish_num,clear_time,distance";
-        let loghead = "名前,年齢,成功/失敗,獲得した魚の数,クリア時間,到達距離\n";
-        let logdata = "";
-        datas.map(function (d) {
-            logdata += d.name+","+d.age+","+d.success+","+d.fish_num+","+d.clear_time +","+d.distance + "\n";
-        });
    
 
     const filename = getNow() + ".csv";
@@ -40,31 +32,7 @@ function download_data() {
         (window.URL || window.webkitURL).revokeObjectURL(url);
     }
 }
-/*
-function download_data() {
-    let loghead2 = "name,age,distance,up_on,up_off\n";
-    let logdata2 = "";
-    datas.map(function (d) {
-        logdata2 += d.name+","+d.age+","+d.up_on+","+d.up_off+"\n";
-    });
 
-
-    const filename = getNow() + ".csv";
-    const bom = new Uint8Array([0xef, 0xbb, 0xbf]);
-    const blob = new Blob([bom, loghead + logdata], { type: "text/csv" });
-
-    if (window.navigator.msSaveBlob) {
-        window.navigator.msSaveBlob(blob, filename);
-    } else {
-        const url = (window.URL || window.webkitURL).createObjectURL(blob);
-        const download = document.createElement("a");
-        download.href = url;
-        download.download = filename;
-        download.click();
-        (window.URL || window.webkitURL).revokeObjectURL(url);
-    }
-}
-*/
 
 // 時刻を取得
 function getNow() {
