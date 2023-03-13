@@ -2,18 +2,18 @@
 var datas = [];
 
 // データを追加
-function add_data(jsonObj) {
+function addJsonData(jsonObj) {
     jsonObj.id = datas.length + 1;
     datas.push(jsonObj);
 }
 
 // データをcsv形式にし、ダウンロード
 
-function download_data() {
+function downloadJsonData() {
     let loghead = "名前,年齢,成功/失敗,獲得した魚の数,クリア時間,到達距離,移動感度,制限時間\n";
     let logdata = "";
     datas.map(function (d) {
-        logdata += d.Success + "," + d.FishNumber + "," + d.ClearTime + "," + d.MovingDistance + "," + d.Sensitivity + "," + d.LimitedTime"\n";
+        logdata += d.Success + "," + d.FishNumber + "," + d.ClearTime + "," + d.MovingDistance + "," + d.Sensitivity + "," + d.LimitedTime + "\n";
     });
    
 
