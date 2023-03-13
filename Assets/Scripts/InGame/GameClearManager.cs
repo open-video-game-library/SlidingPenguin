@@ -49,9 +49,8 @@ namespace penguin
             outputDataManager.PostData(true, FishManager.GetAcquiredNumber(), timeKeeper.elapsedTime.ToString(), 200.0f, ParameterManager.sensitivity, ParameterManager.limitedTime); 
             
             // ペンギンを停止させ、操作をoffにする
-            penguinBehavior.Stop(0);
-            penguinBehavior.enabled=false;
-            
+            StartCoroutine(penguinBehavior.Stop(0.1f));
+
             StartCoroutine(PlayClearSound());
             StartCoroutine(LoadResultScene());
 

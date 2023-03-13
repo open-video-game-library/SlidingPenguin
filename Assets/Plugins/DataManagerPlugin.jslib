@@ -4,6 +4,6 @@ mergeInto(LibraryManager.library, {
         addJsonData(jsonObj);
     },
     downloadData:function(){
-        downloadData();
+        downloadJsonData();
     },
 });

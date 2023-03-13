@@ -53,9 +53,8 @@ namespace penguin
             
             // ペンギンを停止させ、操作をoffにする
             StartCoroutine(_penguinBehavior.Stop(0.5f));
-            _penguinBehavior.enabled = false;
 
-            
+
             // ゲームオーバーの仕方によって異なる処理
             if (gameOverType == GameOverType.COURCEOUT)
             {

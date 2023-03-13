@@ -15,8 +15,7 @@ public class OutputDataManager : MonoBehaviour
     #endif
 
     // 取得するデータのクラスを定義
- 	// Hunter-Chameleonの場合は「スコア」「ヒット数」「ヒット率」
-     [System.Serializable]
+    [System.Serializable]
      public class Data
      {
          // プレイ結果のパラメータ

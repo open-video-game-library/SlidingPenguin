@@ -123,6 +123,7 @@ namespace penguin{
             yield return new WaitForSeconds (stopTime);
             penguinRigidBody.velocity = Vector3.zero;
             penguinRigidBody.angularVelocity = 0;
+            enabled = false;
         }
 
     }
