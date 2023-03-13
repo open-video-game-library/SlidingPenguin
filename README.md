@@ -9,10 +9,8 @@ SlidingPenguinは、海に落ちないように氷の上のペンギンを操作
 ![SlidingPenguin](https://user-images.githubusercontent.com/71160720/222035563-a278f647-33f1-4d93-ba49-c4aefe5f5602.jpg)
 
 
-## Contents
+## ゲーム詳細
 
-ゲームの概要，機能，調整できるパラメータ，出力できるパラメータ，想定される利用方法などを画像を用いて記載  
-ゲームの操作方法やルールもここに記載
 
 ### ルール
 
