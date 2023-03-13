@@ -28,7 +28,7 @@ namespace penguin
         [SerializeField] private Sprite countDownOne;
         [SerializeField] private Sprite countDownGo;
         
-        private float countdown = 4.0f;
+        private float countdown = 6.0f;
         private int count = 10;
 
         // SE再生・停止クラス
@@ -45,8 +45,8 @@ namespace penguin
         public IEnumerator ChangeMode()
         {
             Initialize();
-            yield return new WaitForSeconds(1.5f);
             statusManager.CurrentStatus = InGameStatus.CountDown;
+            yield return new WaitForSeconds(2.0f);
             audio.countdown.Play();
         }
 

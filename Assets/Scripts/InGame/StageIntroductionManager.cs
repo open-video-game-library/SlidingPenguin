@@ -20,7 +20,7 @@ namespace penguin
         
     
         // Update is called once per frame
-        void Update()
+        void FixedUpdate()
         {
             if(statusManager.CurrentStatus == InGameStatus.StageIntroduction)
             {
