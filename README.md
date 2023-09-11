@@ -1,5 +1,7 @@
 # SlidingPenguin
 
+[English version README](https://github.com/open-video-game-library/SlidingPenguin/blob/main/README.EN.md)
+
 SlidingPenguinは、海に落ちないように氷の上のペンギンを操作し、ゴールを目指すドライビングゲームです。
 
 ステージはツルツル滑り、自動で進んでいきます。左右上下の移動と加速を駆使して、ゲームオーバーにならないようにペンギンを制御しましょう。
