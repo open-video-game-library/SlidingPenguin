@@ -1,5 +1,7 @@
 # SlidingPenguin
 
+[日本語版README https://github.com/open-video-game-library/SlidingPenguin/blob/main/README.md]
+
 SlidingPenguin is a driving game of penguin.
 
 Control a penguin on ice and aim for the goal without falling into the sea.
