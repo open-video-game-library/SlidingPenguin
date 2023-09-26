@@ -1,6 +1,6 @@
 # SlidingPenguin
 
-[日本語版README](https://github.com/open-video-game-library/SlidingPenguin/blob/main/README.md)
+[日本語版README](https://github.com/open-video-game-library/SlidingPenguin/blob/main/README.JP.md)
 
 SlidingPenguin is a driving game of penguin.
 
