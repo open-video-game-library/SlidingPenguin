@@ -1,6 +1,6 @@
 # SlidingPenguin
 
-[English version README](https://github.com/open-video-game-library/SlidingPenguin/blob/main/README.EN.md)
+[English version README](https://github.com/open-video-game-library/SlidingPenguin/blob/main/READMEEN.md)
 
 SlidingPenguinは、海に落ちないように氷の上のペンギンを操作し、ゴールを目指すドライビングゲームです。
 
