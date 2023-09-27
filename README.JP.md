@@ -31,10 +31,11 @@ SlidingPenguinは、海に落ちないように氷の上のペンギンを操作
 ### 操作方法
 
 - キーボード操作
-![image](https://user-images.githubusercontent.com/71160720/195009697-ebcbc349-851d-403d-b26a-79e8720eb16d.png)
+![figure_page-0003](https://github.com/open-video-game-library/SlidingPenguin/assets/63552585/e6ccdd2d-61e6-41f3-bcfc-f93f52822446)
+
 
 - ゲームパッド操作
-![SlidingPenguin_control](https://user-images.githubusercontent.com/126433429/224565635-1089822c-00e6-4140-bd1b-6c7ae86327fa.png)
+![figure_page-0001](https://github.com/open-video-game-library/SlidingPenguin/assets/63552585/09d4a778-8899-4336-9d85-5fad01d06a8f)
 
 
 ## Features
