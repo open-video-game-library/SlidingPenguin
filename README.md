@@ -33,10 +33,11 @@ Tasks:
 ### Controls
 
 - Keyboard Controls
-![image](https://user-images.githubusercontent.com/71160720/195009697-ebcbc349-851d-403d-b26a-79e8720eb16d.png)
+![figure_page-0004](https://github.com/open-video-game-library/SlidingPenguin/assets/63552585/0797b2ad-cd6e-417e-8364-14e0a5a63047)
+
 
 - Gamepad Controls
-![SlidingPenguin_control](https://user-images.githubusercontent.com/126433429/224565635-1089822c-00e6-4140-bd1b-6c7ae86327fa.png)
+![figure_page-0002](https://github.com/open-video-game-library/SlidingPenguin/assets/63552585/778f5d3e-4c88-45c7-ba81-63c0be37da68)
 
 
 ## Features
