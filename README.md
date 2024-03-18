@@ -71,41 +71,12 @@ Unity2021.3.4f1
 
 ## Licence
 
-1. SlidingPenguin is free to use.
+This content is licensed under the [MIT License](https://github.com/open-video-game-library/SlidingPenguin/blob/main/LICENSE.md).
 
-2. Unless used for profit or immoral purposes, it can be used for any purpose, including research.
+## Use in Research
 
-3. You can modify the downloaded data and use it.
+[Recommendations for research use of this content](https://github.com/open-video-game-library/SlidingPenguin/blob/main/RESEARCH_USE.md)
 
-4. You don't need to report its usage. However, if you redistribute modified data or use the game's name, please clearly state that.
-
-5. If you use SlidingPenguin for research, please cite the following paper in your publication:
-
-- [研究利用しやすく標準性を目指したビデオゲームの設計と開発](http://id.nii.ac.jp/1001/00212465/)
-```
-@inproceedings{weko_212571_1,
-   author	 = "拓也,岡 and 拓也,川島 and 大智,林 and 恵太,渡邊",
-   title	 = "研究利用しやすく標準性を目指したビデオゲームの設計と開発",
-   booktitle	 = "エンタテインメントコンピューティングシンポジウム論文集",
-   year 	 = "2021",
-   volume	 = "2021",
-   number	 = "",
-   pages	 = "181--186",
-   month	 = "aug"
-}
-```
-
-
-## Note
-
-- Please refrain from falsely publishing anything downloaded from SlidingPenguin as your own development.
-
-- We take no responsibility for any troubles or damages arising from the use of SlidingPenguin.
-
-- Contents and terms of use of SlidingPenguin may change without notice.
-
-- Although you can modify in-game parameters in SlidingPenguin, for the sake of research fairness and reproducibility, please clearly specify the set parameter values.
-- 
 ## Contact
 
 If you have feedback, requests, or questions, please [contact us here.](https://openvideogame.cc/contact)
