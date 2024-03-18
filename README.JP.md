@@ -68,40 +68,11 @@ Unity2021.3.4f1
 
 ## Licence
 
-1. SlidingPenguinは無料でご利用できます。
+本コンテンツは、[MITライセンス](https://github.com/open-video-game-library/SlidingPenguin/blob/main/LICENSE.md)のもとで利用が許可されています。
 
-2. 営利目的・公序良俗に反する目的でない限り、研究目的での利用を含め、あらゆる用途で利用できます。
+## Use in Research
 
-3. ダウンロードしたデータを改変し、ご利用いただいても構いません。
-
-4. 利用報告をする必要はありませんが、改変したデータを二次配布する場合を含め、ゲーム名 を利用した場合は、その旨を明記して下さい。
-
-5. SlidingPenguinを研究で利用する場合は、ご自身の論文内で以下の論文を引用して下さい。
-
-- [研究利用しやすく標準性を目指したビデオゲームの設計と開発](http://id.nii.ac.jp/1001/00212465/)
-```
-@inproceedings{weko_212571_1,
-   author	 = "拓也,岡 and 拓也,川島 and 大智,林 and 恵太,渡邊",
-   title	 = "研究利用しやすく標準性を目指したビデオゲームの設計と開発",
-   booktitle	 = "エンタテインメントコンピューティングシンポジウム論文集",
-   year 	 = "2021",
-   volume	 = "2021",
-   number	 = "",
-   pages	 = "181--186",
-   month	 = "aug"
-}
-```
-
-
-## Note
-
-- SlidingPenguinからダウンロードしたものを、自身が開発したものと偽って公開する行為はご遠慮下さい。
-
-- SlidingPenguinを利用したことによるトラブル/損害が発生した場合、一切の責任を負いません。
-
-- SlidingPenguinのコンテンツや利用規約は、予告なしに変更される場合があります。
-
-- SlidingPenguinではゲーム内のパラメータを変更できますが、研究の公平性や再現性を保つために、設定したパラメータの値を明示するようにしてください。
+[本コンテンツを研究利用する場合の推奨事項](https://github.com/open-video-game-library/SlidingPenguin/blob/main/RESEARCH_USE.JP.md)
 
 ## Contact
 
