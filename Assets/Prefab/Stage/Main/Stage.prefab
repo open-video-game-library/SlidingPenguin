@@ -115,7 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statusManager: {fileID: 0}
   timeKeeper: {fileID: 0}
-  outputDataManager: {fileID: 0}
+  gameDataExport: {fileID: 0}
   penguinBehavior: {fileID: 0}
   audio: {fileID: 0}
   inGameUISwitcher: {fileID: 0}
@@ -2916,19 +2916,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3654721872269320639, guid: 600d62e21452d4c2ab55825ef1b76c9f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.0002827586
+      value: 0.00028275856
       objectReference: {fileID: 0}
     - target: {fileID: 3654721872269320639, guid: 600d62e21452d4c2ab55825ef1b76c9f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.0002827586
+      value: 0.00028275856
       objectReference: {fileID: 0}
     - target: {fileID: 3654721872269320639, guid: 600d62e21452d4c2ab55825ef1b76c9f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.0002827586
+      value: 0.00028275856
       objectReference: {fileID: 0}
     - target: {fileID: 3654721872269320639, guid: 600d62e21452d4c2ab55825ef1b76c9f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0030965516
+      value: -0.0030965512
       objectReference: {fileID: 0}
     - target: {fileID: 3654721872269320639, guid: 600d62e21452d4c2ab55825ef1b76c9f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2936,7 +2936,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3654721872269320639, guid: 600d62e21452d4c2ab55825ef1b76c9f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0001172414
+      value: 0.000117241376
       objectReference: {fileID: 0}
     - target: {fileID: 3654721872269320639, guid: 600d62e21452d4c2ab55825ef1b76c9f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3003,3 +3003,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverManager: {fileID: 1483113615982436903}
+  respawnManager: {fileID: 0}

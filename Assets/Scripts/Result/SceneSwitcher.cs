@@ -20,13 +20,15 @@ namespace penguin
         // Start is called before the first frame update
         void Start()
         {
-            homeButton.onClick.AddListener( () => StartCoroutine("LoadStartScene"));
+            homeButton.onClick.AddListener(() => StartCoroutine("LoadStartScene"));
             retryButton.onClick.AddListener(() => StartCoroutine("LoadInGameScene"));
         }
         
-        
         private IEnumerator LoadStartScene()
         {
+            ExperimentManager.trialCount = 1;
+            GameDataExport.SaveCSV(ExportData.ScoreData);
+
             audio.TransitionClick.Play();
             yield return new WaitForSeconds(1.0f);
             SceneManager.LoadScene ("Start");
@@ -34,10 +36,12 @@ namespace penguin
     
         private IEnumerator LoadInGameScene()
         {
+            ExperimentManager.trialCount++;
+            GameDataExport.CreateTrailCSV();
+
             audio.TransitionClick.Play();
             yield return new WaitForSeconds(1.0f);
             SceneManager.LoadScene ("InGame");
         }
     }
-
 }

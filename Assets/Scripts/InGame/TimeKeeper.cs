@@ -48,15 +48,12 @@ namespace penguin
                 
                 ObserveEvent();
             }
-            
         }
-        
         
         private void ObserveEvent()
         {
             remainingTime = (int)(limitedTime - elapsedTime);
-            remainingTimeText.Set(remainingTime);
-            
+            remainingTimeText.Set(remainingTime);   
             
             if (remainingTime <= 0)
             {
@@ -66,7 +63,6 @@ namespace penguin
             }
             else if (remainingTime <= hurryUpTiming)
             {
-                
                 if (statusManager.CurrentStatus == InGameStatus.InGameNormal)
                 {
                     statusManager.CurrentStatus = InGameStatus.HurryUp;
@@ -85,7 +81,5 @@ namespace penguin
             audio.bgm.pitch = 1.2f;
             audio.bgm.Play();
         }
-
     }
-
 }

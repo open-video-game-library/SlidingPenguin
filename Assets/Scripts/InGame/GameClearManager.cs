@@ -1,10 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 namespace penguin
 {
@@ -18,9 +14,10 @@ namespace penguin
         
         // InGameシーンの時間管理クラス
         [SerializeField] private TimeKeeper timeKeeper;
-        
+
         // CSVファイルで出力するデータをまとめるクラス
         [SerializeField] private OutputDataManager outputDataManager;
+        [SerializeField] private GameDataExport gameDataExport;
 
         // ペンギンの挙動を制御するクラス
         [SerializeField] private PenguinBehavior penguinBehavior;
@@ -30,7 +27,6 @@ namespace penguin
         
         // InGameシーンのUIスイッチ処理を扱うクラス
         [SerializeField] private InGameUISwitcher inGameUISwitcher;
-
 
         private void Start()
         {
@@ -45,18 +41,28 @@ namespace penguin
             // UIをoffにする
             inGameUISwitcher.UnActivateInGameUI();
 
-            // データポスト
-            outputDataManager.PostData(true, FishManager.GetAcquiredNumber(), timeKeeper.elapsedTime.ToString(), 200.0f, ParameterManager.sensitivity, ParameterManager.limitedTime); 
-            
+            int fishNum = FishManager.GetAcquiredNumber();
+
+
+            // 動作プラットフォームに応じた手法でデータポスト
+            if (Application.platform == RuntimePlatform.WebGLPlayer)
+            {
+                outputDataManager.PostData(true, fishNum, timeKeeper.elapsedTime.ToString(), 200.0f,
+                    ParameterManager.sensitivity, ParameterManager.limitedTime, ParameterManager.maximumSpeed, ParameterManager.acceleration, ParameterManager.friction);
+            }
+            else
+            {
+                GameDataExport.ExportGameData(true, fishNum, timeKeeper.elapsedTime.ToString(), 200.0f, PenguinBehavior.penguinTrail,
+                    ParameterManager.sensitivity, ParameterManager.limitedTime, ParameterManager.maximumSpeed, ParameterManager.acceleration, ParameterManager.friction);
+            }
+
             // ペンギンを停止させ、操作をoffにする
             StartCoroutine(penguinBehavior.Stop(0.1f));
 
             StartCoroutine(PlayClearSound());
             StartCoroutine(LoadResultScene());
-
         }
 
-        
         // SE/bgmの再生・切り替え
         private IEnumerator PlayClearSound()
         {
@@ -72,12 +78,10 @@ namespace penguin
             yield return new WaitForSeconds(4.0f);
             SceneManager.LoadScene("Result");
         }
-
         
         public static bool IsClear() 
         {
             return IsSuccess;
         }
-        
     }
 }

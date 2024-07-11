@@ -1,11 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 namespace penguin
 {
@@ -14,10 +9,9 @@ namespace penguin
         TIMEUP,
         COURCEOUT
     }
-    
+
     public class GameOverManager : MonoBehaviour
     {
-        
         // 現在のステータスを管理するクラス
         [SerializeField] private InGameStatusManager statusManager;
 
@@ -26,31 +20,31 @@ namespace penguin
 
         // ペンギンのモデル
         [SerializeField] private GameObject penguinModel;
-        
+
         // ペンギンの挙動を制御するクラス
-        [SerializeField] private  PenguinBehavior _penguinBehavior;
+        [SerializeField] private PenguinBehavior _penguinBehavior;
 
         // InGameシーンのUIスイッチ処理を扱うクラス
         [SerializeField] private InGameUISwitcher inGameUISwitcher;
 
         // CSVファイルで出力するデータをまとめるクラス
         [SerializeField] private OutputDataManager outputDataManager;
-        
+        [SerializeField] private GameDataExport gameDataExport;
+
         // ペンギンのスタート地点のy座標。進んだ距離を算出するために参照
         private float penguinStartPositionY;
-        
-        
+
         // Start is called before the first frame update
         void Start()
         {
             penguinStartPositionY = penguinModel.transform.position.y;
         }
-  
-        public void GameOver(GameOverType gameOverType) 
+
+        public void GameOver(GameOverType gameOverType)
         {
             // UIをoffにする
             inGameUISwitcher.UnActivateInGameUI();
-            
+
             // ペンギンを停止させ、操作をoffにする
             StartCoroutine(_penguinBehavior.Stop(0.5f));
 
@@ -67,14 +61,11 @@ namespace penguin
                 statusManager.CurrentStatus = InGameStatus.TimeUp;
                 inGameUISwitcher.ActivateTimeUpUI();
                 audio.timeUp.Play();
-                
             }
-
-
 
             // ポストデータをセット
             SetPostData();
-           
+
             StartCoroutine(PlayClearSound());
             StartCoroutine(LoadResultScene());
         }
@@ -82,14 +73,22 @@ namespace penguin
         // CSV出力するデータをセットし、postする関数を叩く。
         private void SetPostData()
         {
-            if (outputDataManager != null)
+            int fishNum = FishManager.GetAcquiredNumber();
+            float distance = penguinModel.transform.position.y - penguinStartPositionY;
+
+            // 動作プラットフォームに応じた手法でデータポスト
+            if (Application.platform == RuntimePlatform.WebGLPlayer)
             {
-                int fishNum = FishManager.GetAcquiredNumber();
-                float distance = penguinModel.transform.position.y - penguinStartPositionY;
-                outputDataManager.PostData(false, fishNum, "undefined", distance, ParameterManager.sensitivity, ParameterManager.limitedTime);        
+                outputDataManager.PostData(false, fishNum, "undefined", distance,
+                    ParameterManager.sensitivity, ParameterManager.limitedTime, ParameterManager.maximumSpeed, ParameterManager.acceleration, ParameterManager.friction);
             }
+            else
+            {
+                GameDataExport.ExportGameData(false, fishNum, "undefined", distance, PenguinBehavior.penguinTrail,
+                    ParameterManager.sensitivity, ParameterManager.limitedTime, ParameterManager.maximumSpeed, ParameterManager.acceleration, ParameterManager.friction);
+            }   
         }
-        
+
         // SE/bgmの再生
         private IEnumerator PlayClearSound()
         {
@@ -104,8 +103,5 @@ namespace penguin
             yield return new WaitForSeconds(3.0f);
             SceneManager.LoadScene("Result");
         }
-
-        
     }
-
 }

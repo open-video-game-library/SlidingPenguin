@@ -19,13 +19,16 @@ namespace penguin
         // ペンギンの透明度を指定する変数。
         private float alpha;
 
-
         private void FixedUpdate()
         {
-            if (statusManager.CurrentStatus != InGameStatus.CourseOut) return;
-          
+            if (statusManager.CurrentStatus != InGameStatus.CourseOut)
+            {
+                penguinShadow.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 255);
+                courseOutTime = 0.0f;
+                return;
+            }
+
             // 以降コースアウト時のみ実行
-            
             courseOutTime += Time.deltaTime;
             float t = 0.7f - courseOutTime;
             alpha = t / 0.7f;

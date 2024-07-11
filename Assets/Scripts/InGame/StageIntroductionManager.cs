@@ -17,26 +17,26 @@ namespace penguin
 
         // ゲーム開始前カウントダウン処理をするクラス
         [SerializeField] private CountDown countDown;
-        
-    
+
+        private void Start()
+        {
+            stageIntroductionCamera.gameObject.SetActive(ParameterManager.gameAnimation);
+        }
+
         // Update is called once per frame
         void FixedUpdate()
         {
-            if(statusManager.CurrentStatus == InGameStatus.StageIntroduction)
+            if (!ParameterManager.gameAnimation && statusManager.CurrentStatus == InGameStatus.StageIntroduction) { SkipIntroduction(); }
+            else if(statusManager.CurrentStatus == InGameStatus.StageIntroduction)
             {
-                
                 // ステージ紹介用カメラを動かす。
                 stageIntroductionCamera.Move();
 
-                
                 bool isReachStartPosition = stageIntroductionCamera.transform.position.y <= 15;
                 bool isPauseInput = Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Submit");
                 
                 // カメラが開始地点に到達 OR イントロ中断入力がされたときの処理。
-                if(isReachStartPosition || isPauseInput)
-                {
-                    Finish();
-                }
+                if(isReachStartPosition || isPauseInput) { Finish(); }
             }
         }
 
@@ -48,7 +48,13 @@ namespace penguin
             audio.stageIntoro.Pause();
             StartCoroutine(countDown.ChangeMode());
         }
-        
-    }
 
+        private void SkipIntroduction()
+        {
+            stageIntroductionCamera.Reset();
+            stageIntroductionCamera.gameObject.SetActive(false);
+            audio.stageIntoro.Pause();
+            StartCoroutine(countDown.QuickStart());
+        }
+    }
 }
