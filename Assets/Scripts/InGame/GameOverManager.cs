@@ -55,6 +55,7 @@ namespace penguin
                 statusManager.CurrentStatus = InGameStatus.CourseOut;
                 penguinModel.SetActive(false);
                 audio.drop.Play();
+                Debug.Log("落ちた");
             }
             else if (gameOverType == GameOverType.TIMEUP)
             {
