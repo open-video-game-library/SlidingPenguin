@@ -746,21 +746,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcccd0ae1d5b248779d4856792fc2654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  penguinShadow: {fileID: 0}
+  statusManager: {fileID: 0}
+  audio: {fileID: 0}
   penguinModel: {fileID: 0}
-  CourseOut: 0
-  goalObj: {fileID: 0}
-  timeTextObj: {fileID: 0}
-  gameOverSound: {fileID: 8300000, guid: 4e1dea8fd8512456389cd8076418f20a, type: 3}
-  dropSound: {fileID: 8300000, guid: 2ea81122d4ed145ac92c574bdbfc091a, type: 3}
-  damageSound: {fileID: 8300000, guid: 8edd5c91e042d4a1ab3f4a1b5e8f4e1c, type: 3}
-  GameManager: {fileID: 0}
-  dataManagerObj: {fileID: 0}
-  datastatusTextObj: {fileID: 0}
-  _distance: 0
-  bgmObj: {fileID: 0}
-  penguinRigidBody: {fileID: 0}
-  timeUpText: {fileID: 0}
+  _penguinBehavior: {fileID: 0}
+  inGameUISwitcher: {fileID: 0}
+  gameDataExport: {fileID: 0}
 --- !u!82 &3654721872269320611
 AudioSource:
   m_ObjectHideFlags: 0

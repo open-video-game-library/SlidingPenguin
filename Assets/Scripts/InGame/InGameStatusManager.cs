@@ -18,6 +18,7 @@ namespace penguin
         CourseOut,
         TimeUp
     }
+
     public class InGameStatusManager : MonoBehaviour
     {
         public InGameStatus CurrentStatus;
@@ -30,10 +31,9 @@ namespace penguin
     
         private IEnumerator Initialization()
         {
-            yield return new WaitForSeconds(1.5f);
+            if (ParameterManager.gameAnimation) { yield return new WaitForSeconds(1.5f); }
+            else { yield return new WaitForSeconds(0.0f); }
             CurrentStatus = InGameStatus.StageIntroduction;
-        }
-        
+        }   
     }
-
 }

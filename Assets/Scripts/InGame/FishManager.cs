@@ -20,19 +20,31 @@ namespace  penguin
         // 魚獲得時のSE再生処理を参照
         [SerializeField] private InGameAudio audio;
 
+        // 現在のステータスを管理するクラス
+        [SerializeField] private InGameStatusManager statusManager;
+
         private static int maximumFishNumber;
 
         private void Start()
         {
-            maximumFishNumber = GameObject.FindGameObjectsWithTag("Fish").Length;
+            maximumFishNumber = 0;
+
+            GameObject[] fishObjects = GameObject.FindGameObjectsWithTag("Fish");
+            for (int i = 0; i < fishObjects.Length; i++)
+            {
+                // アクティブになっている魚の数をカウント
+                if (fishObjects[i].activeSelf) { maximumFishNumber++; }
+            }
+
             FishNumber = 0;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if(other.gameObject.tag== "Fish")
+            if(other.gameObject.tag == "Fish")
             {
-                FishNumber ++;
+                if (statusManager.CurrentStatus == InGameStatus.CourseOut) { return; }
+                FishNumber++;
                 fishNumberText.text = "×" + FishNumber;
                 audio.itemAcquire.Play();
                 other.gameObject.transform.parent.gameObject.SetActive(false);

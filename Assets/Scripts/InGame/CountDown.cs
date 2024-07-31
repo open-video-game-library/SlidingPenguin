@@ -1,12 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
-
 
 namespace penguin
 {
@@ -43,6 +37,14 @@ namespace penguin
         }
         
         public IEnumerator ChangeMode()
+        {
+            Initialize();
+            statusManager.CurrentStatus = InGameStatus.CountDown;
+            yield return new WaitForSeconds(2.0f);
+            audio.countdown.Play();
+        }
+
+        public IEnumerator QuickStart()
         {
             Initialize();
             statusManager.CurrentStatus = InGameStatus.CountDown;
@@ -88,14 +90,13 @@ namespace penguin
             {
                 countDownImage.color = new Color(1,1,1,1);
                 countDownImage.sprite = countDownGo;
-                StartCoroutine(SwitchInGame());
+                SwitchInGame();
             }
         }
         
-        private IEnumerator SwitchInGame()
+        private void SwitchInGame()
         {
             statusManager.CurrentStatus = InGameStatus.InGameNormal;
-            yield return new WaitForSeconds(1.0f);
             audio.bgm.Play();
             countDownImage.color = new Color(0,0,0,0);
         }

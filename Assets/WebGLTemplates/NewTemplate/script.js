@@ -10,10 +10,11 @@ function addJsonData(jsonObj) {
 // データをcsv形式にし、ダウンロード
 
 function downloadJsonData() {
-    let loghead = "成功/失敗,獲得した魚の数,クリア時間,到達距離,移動感度,制限時間\n";
+    let loghead = "success,fish_number,clear_time,distance,sensitivity,limited_time,maximum_speed,acceleration,friction\n";
     let logdata = "";
     datas.map(function (d) {
-        logdata += d.Success + "," + d.FishNumber + "," + d.ClearTime + "," + d.MovingDistance + "," + d.Sensitivity + "," + d.LimitedTime + "\n";
+        logdata += d.Success + "," + d.FishNumber + "," + d.ClearTime + "," + d.MovingDistance + "," + d.Sensitivity + "," + d.LimitedTime + ","
+            + d.MaximumSpeed + "," + d.Acceleration + "," + d.Friction + "\n";
     });
    
 
