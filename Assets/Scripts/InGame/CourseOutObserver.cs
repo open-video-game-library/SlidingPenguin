@@ -9,11 +9,16 @@ public class CourseOutObserver : MonoBehaviour
     [SerializeField] private GameOverManager gameOverManager;
     // リスポーンする処理をするクラス
     [SerializeField] private RespawnManager respawnManager;
+    // 現在のステータスを管理するクラス
+    [SerializeField] private InGameStatusManager statusManager;
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if(other.gameObject.tag == "Player")
         {
+            // 既にコースアウト判定になっている場合は、以降の処理を呼ばない
+            if (statusManager.CurrentStatus == InGameStatus.CourseOut) { return; }
+
             if (ParameterManager.respawn)
             {
                 // スタート地点から復活

@@ -1417,7 +1417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statusManager: {fileID: 1616605693}
   timeKeeper: {fileID: 933310032}
-  outputDataManager: {fileID: 0}
+  outputDataManager: {fileID: 1104519200}
   gameDataExport: {fileID: 1739887183}
   penguinBehavior: {fileID: 993276029758175365}
   audio: {fileID: 4393093955608792354}
@@ -2379,7 +2379,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7795454, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -11687,6 +11687,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverManager: {fileID: 1339622032}
   respawnManager: {fileID: 1483113615106285759}
+  statusManager: {fileID: 1616605693}
 --- !u!1 &2923587854895529159
 GameObject:
   m_ObjectHideFlags: 0
