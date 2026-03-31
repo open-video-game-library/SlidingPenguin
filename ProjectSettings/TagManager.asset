@@ -4,22 +4,21 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - deletedetection
-  - obstacle
-  - mizuiro
-  - green
-  - red
-  - yellow
-  - pink
-  - hummer
-  - fish
-  - child
   - Fish
+  - Goal
+  - SubCamera
+  - Obstacle
+  - FallDetector
+  - StageNormal
+  - StageBlizzard
+  - Seal
+  - Start
+  - FishGold
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Platform
   - Water
   - UI
   - 
@@ -51,13 +50,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: 1
-    uniqueID: 1848460489
-    locked: 0
-  - name: 2
-    uniqueID: 1878722001
-    locked: 0
-  - name: Penguin
-    uniqueID: 3067928617
     locked: 0
