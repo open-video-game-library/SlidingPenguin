@@ -63,7 +63,7 @@ SlidingPenguinは、海に落ちないように氷の上のペンギンを操作
 
 ## Requirement
 
-Unity2021.3.4f1
+Unity2022.3.24f1
 
 
 ## Licence
